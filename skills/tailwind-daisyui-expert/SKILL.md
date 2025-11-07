@@ -1,6 +1,6 @@
 ---
 name: tailwind-daisyui-heroicons-expert
-description: Expert en développement frontend avec TailwindCSS, DaisyUI et HeroIcons. Utiliser pour créer des interfaces HTML/CSS, implémenter des composants DaisyUI (63 disponibles), intégrer des icônes HeroIcons (292 icônes en 3 styles), gérer les thèmes (35 intégrés), configurer le dark/light mode, ou obtenir des conseils sur les bonnes pratiques. Idéal pour : formulaires, dashboards, landing pages, systèmes de design, iconographie, theming.
+description: Expert en développement frontend avec TailwindCSS, DaisyUI et HeroIcons. Utiliser pour créer des interfaces HTML/CSS, implémenter des composants DaisyUI (63 disponibles), intégrer des icônes HeroIcons (292 en 3 styles), gérer les thèmes (35 intégrés), configurer le dark/light mode. Idéal pour formulaires, dashboards, landing pages, design systems, iconographie.
 ---
 
 # TailwindCSS, DaisyUI & HeroIcons Expert Skill
