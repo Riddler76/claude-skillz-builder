@@ -1,18 +1,19 @@
 ---
-name: tailwind-daisyui-expert
-description: Expert en développement frontend avec TailwindCSS et DaisyUI. Utiliser pour créer des interfaces HTML/CSS, implémenter des composants DaisyUI (63 disponibles), gérer les thèmes (35 intégrés), configurer le dark/light mode, ou obtenir des conseils sur les bonnes pratiques TailwindCSS/DaisyUI. Idéal pour : formulaires, dashboards, landing pages, systèmes de design, theming.
+name: tailwind-daisyui-heroicons-expert
+description: Expert en développement frontend avec TailwindCSS, DaisyUI et HeroIcons. Utiliser pour créer des interfaces HTML/CSS, implémenter des composants DaisyUI (63 disponibles), intégrer des icônes HeroIcons (292 icônes en 3 styles), gérer les thèmes (35 intégrés), configurer le dark/light mode, ou obtenir des conseils sur les bonnes pratiques. Idéal pour : formulaires, dashboards, landing pages, systèmes de design, iconographie, theming.
 ---
 
-# TailwindCSS & DaisyUI Expert Skill
+# TailwindCSS, DaisyUI & HeroIcons Expert Skill
 
-Expert en développement frontend avec TailwindCSS et DaisyUI. Ce skill vous aide à créer des interfaces modernes avec les 63 composants DaisyUI, gérer les thèmes (35 intégrés), et implémenter correctement le mode dark/light.
+Expert en développement frontend avec TailwindCSS, DaisyUI et HeroIcons. Ce skill vous aide à créer des interfaces modernes avec les 63 composants DaisyUI, 292 icônes HeroIcons, gérer les thèmes (35 intégrés), et implémenter correctement le mode dark/light.
 
 ## Configuration de Base
 
-### Installation (TailwindCSS 4 + DaisyUI 5)
+### Installation (TailwindCSS 4 + DaisyUI 5 + HeroIcons)
 
 ```bash
 npm install -D tailwindcss@latest @tailwindcss/cli@latest daisyui@latest
+npm install @heroicons/react
 ```
 
 ### Configuration CSS (input.css)
@@ -160,6 +161,236 @@ DaisyUI détecte automatiquement `prefers-color-scheme`.
   Padding 10 sur winter, padding 20 sur night
 </div>
 ```
+
+## HeroIcons - Bibliothèque d'Icônes
+
+HeroIcons est la bibliothèque d'icônes officielle de TailwindCSS, créée par les mêmes auteurs. Elle contient **292 icônes** disponibles en **3 styles** différents.
+
+### 3 Styles d'Icônes
+
+**1. Outline (24x24)** : Style par défaut, trait fin
+```jsx
+import { BeakerIcon } from '@heroicons/react/24/outline'
+
+function MyComponent() {
+  return <BeakerIcon className="w-6 h-6 text-blue-500" />
+}
+```
+
+**2. Solid (24x24)** : Version remplie, plus audacieuse
+```jsx
+import { BeakerIcon } from '@heroicons/react/24/solid'
+
+function MyComponent() {
+  return <BeakerIcon className="w-6 h-6 text-blue-500" />
+}
+```
+
+**3. Mini (20x20)** : Version compacte pour petits espaces
+```jsx
+import { BeakerIcon } from '@heroicons/react/20/solid'
+
+function MyComponent() {
+  return <BeakerIcon className="w-5 h-5 text-blue-500" />
+}
+```
+
+### Utilisation en HTML/SVG
+
+Pour les projets sans React, utilisez les SVG directement :
+
+```html
+<!-- Outline -->
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+</svg>
+
+<!-- Solid -->
+<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+</svg>
+```
+
+### Intégration avec DaisyUI
+
+Les icônes s'intègrent parfaitement avec les composants DaisyUI :
+
+```html
+<!-- Boutons avec icônes -->
+<button class="btn btn-primary gap-2">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+  </svg>
+  Ajouter
+</button>
+
+<!-- Input avec icône -->
+<div class="form-control">
+  <div class="input-group">
+    <span>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+    </span>
+    <input type="text" placeholder="Rechercher..." class="input input-bordered" />
+  </div>
+</div>
+
+<!-- Alert avec icône -->
+<div class="alert alert-info">
+  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+  </svg>
+  <span>Nouvelle notification</span>
+</div>
+
+<!-- Menu avec icônes -->
+<ul class="menu bg-base-200 w-56 rounded-box">
+  <li>
+    <a>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+      </svg>
+      Accueil
+    </a>
+  </li>
+  <li>
+    <a>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+      </svg>
+      Profil
+    </a>
+  </li>
+  <li>
+    <a>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+      </svg>
+      Paramètres
+    </a>
+  </li>
+</ul>
+
+<!-- Card avec icône -->
+<div class="card w-96 bg-base-100 shadow-xl">
+  <div class="card-body">
+    <div class="flex items-center gap-4">
+      <div class="avatar placeholder">
+        <div class="bg-primary text-primary-content rounded-full w-16">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <h2 class="card-title">Jean Dupont</h2>
+        <p>Développeur Full Stack</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Badge avec icône -->
+<div class="badge badge-primary gap-2">
+  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+  </svg>
+  Vérifié
+</div>
+```
+
+### Catégories d'Icônes Principales
+
+Voir le fichier [HEROICONS.md](HEROICONS.md) pour la liste complète des 292 icônes.
+
+**Catégories populaires :**
+- **Actions** : plus, minus, x-mark, check, arrow-*, chevron-*, etc.
+- **Navigation** : home, bars-3, magnifying-glass, cog-6-tooth, user, etc.
+- **Media** : play, pause, stop, forward, backward, volume, etc.
+- **Communication** : envelope, phone, chat-bubble, bell, at-symbol, etc.
+- **Commerce** : shopping-cart, credit-card, currency-dollar, gift, etc.
+- **Files** : document, folder, cloud, archive, arrow-down-tray, etc.
+- **Social** : heart, star, share, bookmark, flag, etc.
+- **Status** : check-circle, x-circle, exclamation-triangle, information-circle, etc.
+- **Weather** : sun, moon, cloud, bolt, etc.
+- **Devices** : computer-desktop, device-phone-mobile, printer, etc.
+
+### Sizing avec TailwindCSS
+
+```html
+<!-- Tailles standards -->
+<svg class="w-3 h-3">...</svg>  <!-- 12px - Très petit -->
+<svg class="w-4 h-4">...</svg>  <!-- 16px - Petit -->
+<svg class="w-5 h-5">...</svg>  <!-- 20px - Normal -->
+<svg class="w-6 h-6">...</svg>  <!-- 24px - Défaut -->
+<svg class="w-8 h-8">...</svg>  <!-- 32px - Grand -->
+<svg class="w-10 h-10">...</svg> <!-- 40px - Très grand -->
+<svg class="w-12 h-12">...</svg> <!-- 48px - Extra grand -->
+```
+
+### Coloration
+
+Les icônes utilisent `currentColor`, elles héritent donc automatiquement de la couleur du texte :
+
+```html
+<!-- Via classe text-* -->
+<svg class="w-6 h-6 text-primary">...</svg>
+<svg class="w-6 h-6 text-error">...</svg>
+<svg class="w-6 h-6 text-success">...</svg>
+
+<!-- Via fill ou stroke -->
+<svg class="w-6 h-6" fill="currentColor">...</svg>
+<svg class="w-6 h-6" stroke="currentColor">...</svg>
+
+<!-- Avec hover -->
+<button class="text-base-content hover:text-primary transition-colors">
+  <svg class="w-6 h-6" fill="currentColor">...</svg>
+</button>
+```
+
+### Bonnes Pratiques HeroIcons
+
+1. **Utiliser le bon style** :
+   - Outline pour les interfaces aérées
+   - Solid pour les CTA et éléments importants
+   - Mini pour les petits espaces (badges, labels)
+
+2. **Cohérence visuelle** :
+   - Utiliser un seul style par interface (ne pas mélanger outline et solid)
+   - Garder des tailles cohérentes pour les icônes similaires
+
+3. **Accessibilité** :
+   - Ajouter `aria-label` ou `aria-hidden="true"` selon le contexte
+   - Utiliser `role="img"` pour les icônes décoratives importantes
+
+4. **Performance** :
+   - Préférer le SVG inline pour les icônes fréquemment utilisées
+   - Utiliser des sprites SVG pour de nombreuses icônes
+
+```html
+<!-- Icône décorative -->
+<svg aria-hidden="true" class="w-5 h-5">...</svg>
+
+<!-- Icône avec signification -->
+<button aria-label="Fermer">
+  <svg class="w-5 h-5">...</svg>
+</button>
+
+<!-- Icône avec texte visible -->
+<button>
+  <svg class="w-5 h-5">...</svg>
+  <span>Fermer</span>
+</button>
+```
+
+### Ressources HeroIcons
+
+- **Site officiel** : https://heroicons.com
+- **GitHub** : https://github.com/tailwindlabs/heroicons
+- **Recherche d'icônes** : https://heroicons.com (avec aperçu et copie)
+- **Figma** : Plugin HeroIcons disponible
 
 ## Bibliothèque des 63 Composants DaisyUI
 
