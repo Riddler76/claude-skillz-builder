@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Claude Skillz Builder - Créateur de Skills</title>
+  <meta name="description" content="Créez facilement des Skills personnalisés pour Claude Code avec validation en temps réel, templates inclus et sauvegarde automatique.">
+  <meta name="keywords" content="Claude Code, Skills, Builder, TailwindCSS, DaisyUI, HeroIcons">
+  <meta name="author" content="Riddler76">
+  <title>Claude Skillz Builder v1.0.0 - Créateur de Skills</title>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -43,14 +46,18 @@
   <div class="hero bg-gradient-to-br from-primary to-secondary text-primary-content py-12">
     <div class="hero-content text-center">
       <div class="max-w-3xl">
+        <div class="mb-4">
+          <div class="badge badge-lg badge-info mb-2">v1.0.0</div>
+        </div>
         <h1 class="text-5xl font-bold mb-4">Claude Skillz Builder</h1>
         <p class="text-xl opacity-90">
           Créez facilement des Skills personnalisés pour Claude Code avec un générateur interactif
         </p>
-        <div class="flex gap-2 justify-center mt-6">
+        <div class="flex gap-2 justify-center mt-6 flex-wrap">
           <div class="badge badge-lg badge-accent">✅ Validation en temps réel</div>
-          <div class="badge badge-lg badge-accent">📝 Templates inclus</div>
-          <div class="badge badge-lg badge-accent">⬇️ Export SKILL.md</div>
+          <div class="badge badge-lg badge-accent">📝 6 Templates inclus</div>
+          <div class="badge badge-lg badge-accent">💾 Sauvegarde automatique</div>
+          <div class="badge badge-lg badge-accent">📋 Import/Export</div>
         </div>
       </div>
     </div>
@@ -142,13 +149,36 @@ Exemples concrets d'utilisation
 Recommandations spécifiques"></textarea>
             </div>
 
-            <div class="card-actions justify-end">
-              <button id="generateBtn" class="btn btn-primary gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                </svg>
-                Générer & Télécharger
-              </button>
+            <div class="card-actions justify-between">
+              <div class="flex gap-2">
+                <label for="importFile" class="btn btn-outline btn-sm gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                  </svg>
+                  Importer
+                </label>
+                <input type="file" id="importFile" accept=".md" class="hidden" />
+                <button id="clearDraftBtn" class="btn btn-outline btn-sm btn-error gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                  </svg>
+                  Effacer
+                </button>
+              </div>
+              <div class="flex gap-2">
+                <button id="copyBtn" class="btn btn-secondary gap-2">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                  </svg>
+                  Copier
+                </button>
+                <button id="generateBtn" class="btn btn-primary gap-2">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                  </svg>
+                  Télécharger
+                </button>
+              </div>
             </div>
           </div>
         </div>

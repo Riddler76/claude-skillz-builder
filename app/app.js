@@ -731,7 +731,7 @@ function generateSkill() {
   const descValidation = validateDescription(description);
 
   if (!nameValidation.valid || !descValidation.valid) {
-    alert('Veuillez corriger les erreurs avant de générer le skill');
+    showToast('Veuillez corriger les erreurs avant de générer le skill', 'error');
     return;
   }
 
@@ -761,21 +761,7 @@ ${content}`;
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 
-  // Afficher un message de succès
-  const toast = document.createElement('div');
-  toast.className = 'toast toast-top toast-end';
-  toast.innerHTML = `
-    <div class="alert alert-success">
-      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-      </svg>
-      <span>SKILL.md téléchargé avec succès !</span>
-    </div>
-  `;
-  document.body.appendChild(toast);
-  setTimeout(() => {
-    document.body.removeChild(toast);
-  }, 3000);
+  showToast('SKILL.md téléchargé avec succès !', 'success');
 }
 
 function loadTemplate(templateName) {
@@ -795,21 +781,7 @@ function loadTemplate(templateName) {
   // Scroll vers le haut
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Toast de confirmation
-  const toast = document.createElement('div');
-  toast.className = 'toast toast-top toast-end';
-  toast.innerHTML = `
-    <div class="alert alert-info">
-      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-      </svg>
-      <span>Template ${templateName} chargé !</span>
-    </div>
-  `;
-  document.body.appendChild(toast);
-  setTimeout(() => {
-    document.body.removeChild(toast);
-  }, 3000);
+  showToast(`Template ${templateName} chargé !`, 'info');
 }
 
 function showTab(tabName) {
@@ -828,8 +800,158 @@ function showTab(tabName) {
   document.querySelector(`[data-tab="${tabName}"]`).classList.add('tab-active');
 }
 
+/**
+ * Sauvegarde automatique du brouillon dans localStorage
+ */
+function saveDraft() {
+  const draft = {
+    name: document.getElementById('skillName').value,
+    description: document.getElementById('skillDescription').value,
+    allowedTools: document.getElementById('allowedTools').value,
+    content: document.getElementById('skillContent').value,
+    timestamp: new Date().toISOString()
+  };
+  localStorage.setItem('skill-draft', JSON.stringify(draft));
+}
+
+/**
+ * Charge le brouillon depuis localStorage
+ */
+function loadDraft() {
+  const draftJson = localStorage.getItem('skill-draft');
+  if (!draftJson) return null;
+
+  try {
+    return JSON.parse(draftJson);
+  } catch (e) {
+    console.error('Error loading draft:', e);
+    return null;
+  }
+}
+
+/**
+ * Supprime le brouillon
+ */
+function clearDraft() {
+  localStorage.removeItem('skill-draft');
+}
+
+/**
+ * Copie le SKILL.md dans le presse-papier
+ */
+function copyToClipboard() {
+  const name = document.getElementById('skillName').value;
+  const description = document.getElementById('skillDescription').value;
+  const allowedTools = document.getElementById('allowedTools').value;
+  const content = document.getElementById('skillContent').value;
+
+  let skillContent = `---
+name: ${name}
+description: ${description}`;
+
+  if (allowedTools) {
+    skillContent += `\nallowed-tools: ${allowedTools}`;
+  }
+
+  skillContent += `\n---
+
+${content}`;
+
+  navigator.clipboard.writeText(skillContent).then(() => {
+    showToast('SKILL.md copié dans le presse-papier !', 'success');
+  }).catch(err => {
+    showToast('Erreur lors de la copie', 'error');
+    console.error('Copy error:', err);
+  });
+}
+
+/**
+ * Importe un fichier SKILL.md
+ */
+function importSkillFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const content = e.target.result;
+    parseSkillFile(content);
+  };
+  reader.readAsText(file);
+}
+
+/**
+ * Parse un fichier SKILL.md et remplit les champs
+ */
+function parseSkillFile(content) {
+  // Extraire le frontmatter YAML
+  const yamlRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
+  const match = content.match(yamlRegex);
+
+  if (!match) {
+    showToast('Format de fichier invalide. Le fichier doit contenir un frontmatter YAML.', 'error');
+    return;
+  }
+
+  const frontmatter = match[1];
+  const body = match[2];
+
+  // Parser le YAML (simple parsing)
+  const nameMatch = frontmatter.match(/name:\s*(.+)/);
+  const descMatch = frontmatter.match(/description:\s*(.+)/);
+  const toolsMatch = frontmatter.match(/allowed-tools:\s*(.+)/);
+
+  if (nameMatch) document.getElementById('skillName').value = nameMatch[1].trim();
+  if (descMatch) document.getElementById('skillDescription').value = descMatch[1].trim();
+  if (toolsMatch) document.getElementById('allowedTools').value = toolsMatch[1].trim();
+  document.getElementById('skillContent').value = body.trim();
+
+  updateValidation();
+  showToast('Skill importé avec succès !', 'success');
+}
+
+/**
+ * Affiche une notification toast
+ */
+function showToast(message, type = 'info') {
+  const iconMap = {
+    success: '<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>',
+    error: '<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>',
+    info: '<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>'
+  };
+
+  const toast = document.createElement('div');
+  toast.className = 'toast toast-top toast-end';
+  toast.innerHTML = `
+    <div class="alert alert-${type}">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        ${iconMap[type]}
+      </svg>
+      <span>${message}</span>
+    </div>
+  `;
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    document.body.removeChild(toast);
+  }, 3000);
+}
+
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
+  // Charger le brouillon au démarrage
+  const draft = loadDraft();
+  if (draft) {
+    const confirmLoad = confirm(`Un brouillon sauvegardé le ${new Date(draft.timestamp).toLocaleString()} a été trouvé. Voulez-vous le charger ?`);
+    if (confirmLoad) {
+      document.getElementById('skillName').value = draft.name;
+      document.getElementById('skillDescription').value = draft.description;
+      document.getElementById('allowedTools').value = draft.allowedTools;
+      document.getElementById('skillContent').value = draft.content;
+      updateValidation();
+      showToast('Brouillon chargé !', 'success');
+    }
+  }
+
   // Character counters
   const nameInput = document.getElementById('skillName');
   const descInput = document.getElementById('skillDescription');
@@ -837,18 +959,46 @@ document.addEventListener('DOMContentLoaded', () => {
   nameInput.addEventListener('input', (e) => {
     document.getElementById('nameCount').textContent = `${e.target.value.length}/64`;
     updateValidation();
+    saveDraft();
   });
 
   descInput.addEventListener('input', (e) => {
     document.getElementById('descCount').textContent = `${e.target.value.length}/1024`;
     updateValidation();
+    saveDraft();
   });
 
-  document.getElementById('allowedTools').addEventListener('input', updateValidation);
-  document.getElementById('skillContent').addEventListener('input', updatePreview);
+  document.getElementById('allowedTools').addEventListener('input', () => {
+    updateValidation();
+    saveDraft();
+  });
+
+  document.getElementById('skillContent').addEventListener('input', () => {
+    updatePreview();
+    saveDraft();
+  });
 
   // Generate button
   document.getElementById('generateBtn').addEventListener('click', generateSkill);
+
+  // Copy button
+  document.getElementById('copyBtn')?.addEventListener('click', copyToClipboard);
+
+  // Import button
+  document.getElementById('importFile')?.addEventListener('change', importSkillFile);
+
+  // Clear draft button
+  document.getElementById('clearDraftBtn')?.addEventListener('click', () => {
+    if (confirm('Êtes-vous sûr de vouloir effacer le brouillon ?')) {
+      clearDraft();
+      document.getElementById('skillName').value = '';
+      document.getElementById('skillDescription').value = '';
+      document.getElementById('allowedTools').value = '';
+      document.getElementById('skillContent').value = '';
+      updateValidation();
+      showToast('Brouillon effacé', 'info');
+    }
+  });
 
   // Tabs
   document.querySelectorAll('.tabs .tab').forEach(tab => {

@@ -1,11 +1,24 @@
 # 🚀 Claude Skillz Builder
 
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/Riddler76/claude-skillz-builder/releases/tag/v1.0.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude-Code-blue)](https://code.claude.com)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-38bdf8)](https://tailwindcss.com)
+[![DaisyUI](https://img.shields.io/badge/DaisyUI-4.12-5a0ef8)](https://daisyui.com)
 
 **Créez facilement des Skills personnalisés pour Claude Code avec un générateur interactif**
 
 Une mini application web qui vous permet de créer, valider et exporter des Skills Claude conformes aux standards officiels, avec templates inclus et validation en temps réel.
+
+## 🎉 Nouveautés V1.0.0
+
+Version stable avec fonctionnalités avancées :
+
+- 💾 **Sauvegarde Automatique** : Vos brouillons sont sauvegardés automatiquement
+- 📥 **Import de Fichiers** : Importez et modifiez des SKILL.md existants
+- 📋 **Copie Presse-papier** : Copiez votre skill en un clic
+- 🗑️ **Gestion de Brouillons** : Chargez ou supprimez vos brouillons
+- 🎨 **Interface Polie** : Notifications toast et feedback améliorés
 
 ## ✨ Features
 
@@ -16,12 +29,15 @@ Une mini application web qui vous permet de créer, valider et exporter des Skil
 - 🎨 **Dark/Light Mode** : Interface moderne avec TailwindCSS & DaisyUI
 - ⬇️ **Export SKILL.md** : Téléchargement direct au format requis
 - 📚 **Documentation Intégrée** : Guide complet basé sur la doc officielle
+- 💾 **Auto-save** : Ne perdez jamais votre travail
+- 📥 **Import/Export** : Importez des skills existants pour les modifier
 
 ## 🎯 Exemple Inclus
 
-Le projet inclut un skill complet **TailwindCSS & DaisyUI Expert** comme référence, avec :
+Le projet inclut un skill complet **TailwindCSS, DaisyUI & HeroIcons Expert** comme référence, avec :
 - ✅ Frontmatter conforme aux standards Claude
 - ✅ 63 composants DaisyUI documentés
+- ✅ 292 icônes HeroIcons cataloguées
 - ✅ Gestion complète des thèmes (35 intégrés)
 - ✅ Exemples HTML complets (Dashboard, Login, E-commerce)
 - ✅ Bonnes pratiques et anti-patterns
@@ -37,10 +53,11 @@ claude-skillz-builder/
 │   └── tailwind-daisyui-expert/
 │       ├── SKILL.md        # Skill principal
 │       ├── COMPONENTS.md   # Référence des 63 composants
+│       ├── HEROICONS.md    # Catalogue 292 icônes
 │       └── EXAMPLES.md     # Exemples complets
-├── examples/
-│   └── (autres skills d'exemple)
-└── README.md
+├── CHANGELOG.md            # Historique des versions
+├── LICENSE                 # Licence MIT
+└── README.md               # Ce fichier
 ```
 
 ## 🚀 Quick Start
@@ -57,7 +74,11 @@ claude-skillz-builder/
 
 3. **Valider** : La validation se fait en temps réel
 
-4. **Télécharger** : Cliquez sur "Générer & Télécharger" pour obtenir `SKILL.md`
+4. **Exporter** :
+   - Cliquez sur "Télécharger" pour obtenir `SKILL.md`
+   - Ou "Copier" pour copier dans le presse-papier
+
+5. **Sauvegarder** : Votre travail est automatiquement sauvegardé ! Au prochain chargement, vous pourrez reprendre là où vous vous êtes arrêté.
 
 ### Utilisation des Templates
 
