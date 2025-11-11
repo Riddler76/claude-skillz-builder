@@ -99,14 +99,24 @@ play, pause, stop, forward, backward, play-circle, play-pause, volume-*, photo, 
 ## 💡 Guide Rapide d'Utilisation
 
 ### Sizing (TailwindCSS)
+
+**Correspondance viewBox ↔ Taille recommandée:**
 ```html
-<svg class="w-3 h-3">...</svg>  <!-- 12px - Micro -->
-<svg class="w-4 h-4">...</svg>  <!-- 16px - Mini/Badges -->
-<svg class="w-5 h-5">...</svg>  <!-- 20px - Boutons/Inputs -->
-<svg class="w-6 h-6">...</svg>  <!-- 24px - Standard -->
-<svg class="w-8 h-8">...</svg>  <!-- 32px - Headings -->
-<svg class="w-10 h-10">...</svg> <!-- 40px - Heroes -->
+<!-- Micro 16×16 - Pour badges compacts, inline text -->
+<svg class="w-4 h-4" viewBox="0 0 16 16">...</svg>  <!-- 16px natif -->
+
+<!-- Mini 20×20 - Pour badges, boutons, inputs -->
+<svg class="w-5 h-5" viewBox="0 0 20 20">...</svg>  <!-- 20px natif -->
+
+<!-- Standard 24×24 - Pour UI générale, navigation -->
+<svg class="w-6 h-6" viewBox="0 0 24 24">...</svg>  <!-- 24px natif -->
+
+<!-- Upscaled - Pour headings, heroes -->
+<svg class="w-8 h-8" viewBox="0 0 24 24">...</svg>  <!-- 32px scaled -->
+<svg class="w-10 h-10" viewBox="0 0 24 24">...</svg> <!-- 40px scaled -->
 ```
+
+**Note importante:** Pour une qualité optimale, utilisez la taille native (viewBox = classe w-X). Le scaling est possible mais peut légèrement affecter le rendu sur certains écrans.
 
 ### Coloration (currentColor)
 ```html
@@ -153,7 +163,12 @@ play, pause, stop, forward, backward, play-circle, play-pause, volume-*, photo, 
 ## ✅ Bonnes Pratiques
 
 1. **Cohérence:** Un seul style par interface (outline OU solid)
-2. **Accessibilité:**
+2. **ViewBox correct:**
+   - `viewBox="0 0 24 24"` pour Outline et Solid standard (w-6 h-6 natif)
+   - `viewBox="0 0 20 20"` pour Mini (w-5 h-5 natif)
+   - `viewBox="0 0 16 16"` pour Micro (w-4 h-4 natif)
+   - Scaling possible mais privilégier taille native pour qualité optimale
+3. **Accessibilité:**
    ```html
    <!-- Décorative -->
    <svg aria-hidden="true">...</svg>
@@ -161,9 +176,9 @@ play, pause, stop, forward, backward, play-circle, play-pause, volume-*, photo, 
    <!-- Fonctionnelle -->
    <button aria-label="Fermer"><svg>...</svg></button>
    ```
-3. **Performance:** SVG inline pour < 10 icônes, sprites pour > 10
-4. **Sizing:** Utiliser classes Tailwind (w-4, w-5, w-6)
-5. **Couleurs:** Toujours utiliser currentColor
+4. **Performance:** SVG inline pour < 10 icônes, sprites pour > 10
+5. **Sizing:** Utiliser classes Tailwind (w-4, w-5, w-6) correspondant au viewBox
+6. **Couleurs:** Toujours utiliser currentColor
 
 ## 🔗 Ressources
 

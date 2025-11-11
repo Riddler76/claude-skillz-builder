@@ -1,11 +1,11 @@
 ---
 name: tailwind-daisyui-heroicons-expert
-description: Expert développement frontend TailwindCSS 4, DaisyUI 5 et HeroIcons v2. Créer interfaces modernes avec 63 composants DaisyUI, 316 icônes HeroIcons (4 styles), 35 thèmes intégrés, dark/light mode. Utiliser pour dashboards, formulaires, landing pages, design systems, SPAs. Compatible CDN et build.
+description: Expert développement frontend TailwindCSS 4, DaisyUI 5 et HeroIcons v2. Créer interfaces modernes avec 75+ composants DaisyUI, 316 icônes HeroIcons (4 styles), 35 thèmes intégrés, dark/light mode. Utiliser pour dashboards, formulaires, landing pages, design systems, SPAs. Compatible CDN et build.
 ---
 
 # TailwindCSS 4 + DaisyUI 5 + HeroIcons Expert
 
-Expert en développement frontend moderne : **63 composants DaisyUI**, **316 icônes HeroIcons** (4 styles), **35 thèmes** intégrés, **theming personnalisé** complet.
+Expert en développement frontend moderne : **75+ composants DaisyUI v5**, **316 icônes HeroIcons** (4 styles), **35 thèmes** intégrés, **theming personnalisé** complet.
 
 ## 🚀 Quick Start
 
@@ -15,8 +15,8 @@ Expert en développement frontend moderne : **63 composants DaisyUI**, **316 ic�
 <!DOCTYPE html>
 <html data-theme="light">
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
   <button class="btn btn-primary">Hello DaisyUI!</button>
@@ -24,7 +24,7 @@ Expert en développement frontend moderne : **63 composants DaisyUI**, **316 ic�
 </html>
 ```
 
-**Note CDN**: Utilise DaisyUI v4.12.10 (variables HSL) pour compatibilité CDN. Pour production, préférez le build.
+**Note CDN**: Utilise DaisyUI v5 (OKLCH) avec Tailwind CSS v4 browser. Pour production, préférez le build npm.
 
 ### Via Build (Production)
 
@@ -50,17 +50,18 @@ npx tailwindcss -i ./app.css -o ./dist/output.css --watch
 
 ---
 
-## 📚 Composants DaisyUI (63)
+## 📚 Composants DaisyUI v5 (75+)
 
 ### Catégories Principales
 
-**Actions (6)**: Button, Dropdown, Modal, Swap, Theme Controller, FAB
-**Data Display (17)**: Card, Badge, Avatar, Table, Stat, Carousel, Timeline...
-**Navigation (8)**: Navbar, Menu, Tabs, Breadcrumbs, Pagination, Steps...
-**Forms (14)**: Input, Checkbox, Radio, Select, Range, Toggle, File Input...
-**Feedback (6)**: Alert, Progress, Loading, Toast, Skeleton...
-**Layout (6)**: Hero, Drawer, Divider, Footer, Artboard, Join
+**Actions (7)**: Button, Dropdown, Modal, Swap, Theme Controller, FAB, Filter
+**Data Display (20)**: Card, Badge, Avatar, Table, Stat, Carousel, Timeline, List, Hover Gallery, Hover 3D, Text Rotate, Status...
+**Navigation (9)**: Navbar, Menu, Tabs, Breadcrumbs, Pagination, Steps, Dock...
+**Forms (15)**: Input, Checkbox, Radio, Select, Range, Toggle, File Input, Fieldset, Validator...
+**Feedback (6)**: Alert, Progress, Loading, Toast, Skeleton, Tooltip
+**Layout (7)**: Hero, Drawer, Divider, Footer, Artboard, Join, Stack
 **Mockup (4)**: Browser, Code, Phone, Window
+**Utilities (3+)**: Calendar, Indicator, Mask...
 
 ➡️ **Voir [COMPONENTS.md](./COMPONENTS.md)** pour la liste complète avec exemples de code
 
@@ -169,32 +170,27 @@ document.querySelector('[data-choose-theme]').addEventListener('change', (e) => 
 **Créer vos propres thèmes** avec couleurs et styles uniques :
 
 ➡️ **Voir [THEMES.md](./THEMES.md)** pour :
-- Guide complet de création (DaisyUI v4 HSL + v5 OKLCH)
+- Guide complet de création DaisyUI v5 (format OKLCH)
 - **2 thèmes prêts à l'emploi** : 🌞 Ocean Breeze (light) + 🌙 Midnight Pro (dark)
-- Outils de conversion HEX → HSL/OKLCH
+- Outils de conversion HEX → OKLCH
 - Exemples HTML complets
 
-**Aperçu rapide** (DaisyUI v4 CDN):
-```css
-[data-theme="mon-theme"] {
-  --p: 217 91% 60%;    /* primary (HSL) */
-  --s: 158 64% 52%;    /* secondary */
-  --a: 38 92% 50%;     /* accent */
-  --n: 218 18% 17%;    /* neutral */
-  --b1: 0 0% 100%;     /* base-100 */
-  --b2: 220 14% 96%;   /* base-200 */
-  --b3: 220 13% 91%;   /* base-300 */
-}
-```
-
-**Build DaisyUI v5** (OKLCH):
+**DaisyUI v5** (OKLCH - Recommandé):
 ```css
 @plugin "daisyui/theme" {
   name: "mon-theme";
   default: true;
+  color-scheme: light;
+
   --color-primary: oklch(60% 0.2 240);
   --color-secondary: oklch(70% 0.15 180);
   --color-accent: oklch(65% 0.25 50);
+  --color-base-100: oklch(98% 0.02 240);
+  --color-base-200: oklch(95% 0.03 240);
+  --color-base-300: oklch(92% 0.04 240);
+
+  --radius-box: 0.5rem;
+  --radius-field: 0.25rem;
 }
 ```
 
@@ -254,7 +250,7 @@ import { BeakerIcon } from '@heroicons/react/16/solid'
 <!-- Bouton avec icône -->
 <button class="btn btn-primary gap-2">
   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"></path>
   </svg>
   Ajouter
 </button>
@@ -262,23 +258,23 @@ import { BeakerIcon } from '@heroicons/react/16/solid'
 <!-- Input avec icône -->
 <label class="input input-bordered flex items-center gap-2">
   <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
   </svg>
   <input type="text" placeholder="Rechercher..." />
 </label>
 
-<!-- Alert avec icône -->
+<!-- Alert avec icône (Solid 24x24) -->
 <div class="alert alert-info">
-  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd"></path>
   </svg>
   <span>Nouvelle notification</span>
 </div>
 
-<!-- Badge avec icône -->
+<!-- Badge avec icône (Micro 16x16) -->
 <div class="badge badge-success gap-1">
-  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm3.844-8.791a.75.75 0 0 0-1.188-.918l-3.7 4.79-1.649-1.833a.75.75 0 1 0-1.114 1.004l2.25 2.5a.75.75 0 0 0 1.15-.043l4.25-5.5z" clip-rule="evenodd"></path>
   </svg>
   Vérifié
 </div>
@@ -573,13 +569,13 @@ Quand l'utilisateur demande :
 - **TailwindCSS Play** : https://play.tailwindcss.com
 
 ### Fichiers Support
-- **[COMPONENTS.md](./COMPONENTS.md)** : 63 composants avec code
+- **[COMPONENTS.md](./COMPONENTS.md)** : 75+ composants DaisyUI v5 avec code
 - **[HEROICONS.md](./HEROICONS.md)** : 316 icônes cataloguées
-- **[THEMES.md](./THEMES.md)** : Guide thèmes + 2 exemples prêts
-- **[EXAMPLES.md](./EXAMPLES.md)** : Applications complètes
+- **[THEMES.md](./THEMES.md)** : Guide thèmes OKLCH + 2 exemples prêts
+- **[EXAMPLES.md](./EXAMPLES.md)** : Applications complètes DaisyUI v5
 
 ---
 
-**Version** : TailwindCSS 4 + DaisyUI 5.5.0 + HeroIcons v2.1.5
-**Compatibilité** : CDN (DaisyUI 4.12.10) + Build (DaisyUI 5.5.0)
+**Version** : TailwindCSS 4 + DaisyUI 5.5.x + HeroIcons v2.1.5
+**Compatibilité** : CDN v5 + Build npm
 **License** : MIT pour tous les composants
