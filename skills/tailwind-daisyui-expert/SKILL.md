@@ -15,7 +15,7 @@ Expert en développement frontend moderne : **65 composants DaisyUI v5**, **316 
 <!DOCTYPE html>
 <html data-theme="light">
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
@@ -24,7 +24,7 @@ Expert en développement frontend moderne : **65 composants DaisyUI v5**, **316 
 </html>
 ```
 
-**Note CDN**: Utilise DaisyUI v5 (OKLCH) avec Tailwind CSS v4 browser. Pour production, préférez le build npm.
+**Note CDN**: Utilise `full.min.css` pour avoir **tous les 35 thèmes** disponibles. Pour production, préférez le build npm pour optimiser la taille.
 
 ### Via Build (Production)
 

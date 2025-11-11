@@ -155,7 +155,7 @@ Thème clair inspiré de l'océan avec tons bleus/verts apaisants.
 <!DOCTYPE html>
 <html data-theme="ocean-breeze">
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>/* Insérer CSS du thème ci-dessus (version @plugin) */</style>
 </head>
@@ -296,7 +296,7 @@ Thème sombre professionnel avec accents violets et contraste élevé.
 <!DOCTYPE html>
 <html data-theme="midnight-pro">
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>/* Insérer CSS du thème ci-dessus (version @plugin) */</style>
 </head>
