@@ -1,11 +1,11 @@
 ---
 name: tailwind-daisyui-heroicons-expert
-description: Expert développement frontend TailwindCSS 4, DaisyUI 5 et HeroIcons v2. Créer interfaces modernes avec 75+ composants DaisyUI, 316 icônes HeroIcons (4 styles), 35 thèmes intégrés, dark/light mode. Utiliser pour dashboards, formulaires, landing pages, design systems, SPAs. Compatible CDN et build.
+description: Expert développement frontend TailwindCSS 4, DaisyUI 5 et HeroIcons v2. Créer interfaces modernes avec 65 composants DaisyUI, 316 icônes HeroIcons (4 styles), 35 thèmes intégrés, dark/light mode. Utiliser pour dashboards, formulaires, landing pages, design systems, SPAs. Compatible CDN et build.
 ---
 
 # TailwindCSS 4 + DaisyUI 5 + HeroIcons Expert
 
-Expert en développement frontend moderne : **75+ composants DaisyUI v5**, **316 icônes HeroIcons** (4 styles), **35 thèmes** intégrés, **theming personnalisé** complet.
+Expert en développement frontend moderne : **65 composants DaisyUI v5**, **316 icônes HeroIcons** (4 styles), **35 thèmes** intégrés, **theming personnalisé** complet.
 
 ## 🚀 Quick Start
 
@@ -15,7 +15,7 @@ Expert en développement frontend moderne : **75+ composants DaisyUI v5**, **316
 <!DOCTYPE html>
 <html data-theme="light">
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
@@ -24,7 +24,7 @@ Expert en développement frontend moderne : **75+ composants DaisyUI v5**, **316
 </html>
 ```
 
-**Note CDN**: Utilise DaisyUI v5 (OKLCH) avec Tailwind CSS v4 browser. Pour production, préférez le build npm.
+**Note CDN**: Utilise `full.min.css` pour avoir **tous les 35 thèmes** disponibles. Pour production, préférez le build npm pour optimiser la taille.
 
 ### Via Build (Production)
 
@@ -50,18 +50,17 @@ npx tailwindcss -i ./app.css -o ./dist/output.css --watch
 
 ---
 
-## 📚 Composants DaisyUI v5 (75+)
+## 📚 Composants DaisyUI v5 (65)
 
 ### Catégories Principales
 
-**Actions (7)**: Button, Dropdown, Modal, Swap, Theme Controller, FAB, Filter
-**Data Display (20)**: Card, Badge, Avatar, Table, Stat, Carousel, Timeline, List, Hover Gallery, Hover 3D, Text Rotate, Status...
-**Navigation (9)**: Navbar, Menu, Tabs, Breadcrumbs, Pagination, Steps, Dock...
-**Forms (15)**: Input, Checkbox, Radio, Select, Range, Toggle, File Input, Fieldset, Validator...
-**Feedback (6)**: Alert, Progress, Loading, Toast, Skeleton, Tooltip
-**Layout (7)**: Hero, Drawer, Divider, Footer, Artboard, Join, Stack
+**Actions (6)**: Button, Dropdown, FAB, Modal, Swap, Theme Controller
+**Data Display (18)**: Accordion, Avatar, Badge, Card, Carousel, Chat Bubble, Collapse, Countdown, Diff, Hover 3D, Hover Gallery, Kbd, List, Stat, Status, Table, Text Rotate, Timeline
+**Navigation (8)**: Breadcrumbs, Dock, Link, Menu, Navbar, Pagination, Steps, Tabs
+**Feedback (7)**: Alert, Loading, Progress, Radial Progress, Skeleton, Toast, Tooltip
+**Data Input (14)**: Calendar, Checkbox, Fieldset, File Input, Filter, Label, Radio, Range, Rating, Select, Text Input, Textarea, Toggle, Validator
+**Layout (8)**: Divider, Drawer, Footer, Hero, Indicator, Join, Mask, Stack
 **Mockup (4)**: Browser, Code, Phone, Window
-**Utilities (3+)**: Calendar, Indicator, Mask...
 
 ➡️ **Voir [COMPONENTS.md](./COMPONENTS.md)** pour la liste complète avec exemples de code
 
@@ -90,9 +89,9 @@ npx tailwindcss -i ./app.css -o ./dist/output.css --watch
 
 ### Liste Complète
 
-**Clairs (20)**: light, cupcake, bumblebee, emerald, corporate, synthwave, retro, cyberpunk, valentine, garden, lofi, pastel, fantasy, wireframe, cmyk, autumn, acid, lemonade, winter, nord, caramellatte, silk
+**🌞 Thèmes Clairs (14)**: light, cupcake, bumblebee, emerald, corporate, retro, garden, fantasy, wireframe, lemonade, acid, pastel, caramellatte, silk
 
-**Sombres (15)**: dark, night, coffee, dim, sunset, dracula, business, forest, aqua, black, luxury, halloween, abyss
+**🌙 Thèmes Sombres (21)**: dark, synthwave, cyberpunk, valentine, halloween, forest, aqua, lofi, black, luxury, dracula, cmyk, autumn, business, night, coffee, winter, dim, nord, sunset, abyss
 
 ### Configuration
 
