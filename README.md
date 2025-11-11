@@ -39,6 +39,8 @@ Le projet inclut un skill complet **TailwindCSS, DaisyUI & HeroIcons Expert** co
 - ✅ 63 composants DaisyUI documentés
 - ✅ 292 icônes HeroIcons cataloguées
 - ✅ Gestion complète des thèmes (35 intégrés)
+- ✅ **2 Thèmes personnalisés** prêts à l'emploi (Ocean Breeze & Midnight Pro)
+- ✅ Guide complet de création de thèmes personnalisés
 - ✅ Exemples HTML complets (Dashboard, Login, E-commerce)
 - ✅ Bonnes pratiques et anti-patterns
 
@@ -54,6 +56,7 @@ claude-skillz-builder/
 │       ├── SKILL.md        # Skill principal
 │       ├── COMPONENTS.md   # Référence des 63 composants
 │       ├── HEROICONS.md    # Catalogue 292 icônes
+│       ├── THEMES.md       # Guide thèmes personnalisés + 2 exemples
 │       └── EXAMPLES.md     # Exemples complets
 ├── CHANGELOG.md            # Historique des versions
 ├── LICENSE                 # Licence MIT
