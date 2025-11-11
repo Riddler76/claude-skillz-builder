@@ -1,18 +1,20 @@
-# DaisyUI v5 - 65 Composants
+# DaisyUI v5 - 75+ Composants
 
-**Reference rapide** des 65 composants DaisyUI organisés par catégorie. [Documentation officielle](https://daisyui.com/components)
+**Reference rapide** des 75+ composants DaisyUI v5 organisés par catégorie. [Documentation officielle](https://daisyui.com/components)
 
 ## 📋 Liste Complète par Catégorie
 
 | Catégorie | Composants (Total) |
 |-----------|-------------------|
-| **Actions (6)** | Button, Dropdown, Modal, Swap, Theme Controller, FAB |
-| **Data Display (18)** | Accordion, Avatar, Badge, Card, Carousel, Chat Bubble, Collapse, Countdown, Diff, Divider, Indicator, Kbd, Mask, Progress, Radial Progress, Skeleton, Stat, Table, Timeline |
-| **Navigation (8)** | Breadcrumbs, Bottom Nav, Link, Menu, Navbar, Pagination, Steps, Tabs |
+| **Actions (7)** | Button, Dropdown, Modal, Swap, Theme Controller, FAB, Filter |
+| **Data Display (21)** | Accordion, Avatar, Badge, Card, Carousel, Chat Bubble, Collapse, Countdown, Diff, Divider, Indicator, Kbd, Mask, Progress, Radial Progress, Skeleton, Stat, Table, Timeline, Text Rotate, Status |
+| **Navigation (9)** | Breadcrumbs, Bottom Nav, Link, Menu, Navbar, Pagination, Steps, Tabs, Dock |
 | **Feedback (7)** | Alert, Loading, Progress, Radial Progress, Skeleton, Toast, Tooltip |
-| **Data Input (14)** | Checkbox, File Input, Radio, Range, Rating, Select, Text Input, Textarea, Toggle, Label, Form Control, Join (forms) |
-| **Layout (8)** | Artboard, Divider, Drawer, Footer, Hero, Join, Stack, Indicator |
+| **Data Input (15)** | Checkbox, File Input, Radio, Range, Rating, Select, Text Input, Textarea, Toggle, Label, Form Control, Fieldset, Validator, Join (forms) |
+| **Layout (9)** | Artboard, Divider, Drawer, Footer, Hero, Join, Stack, Indicator, List |
 | **Mockup (4)** | Browser, Code, Phone, Window |
+| **Effects (2)** | Hover 3D, Hover Gallery |
+| **Utilities (1)** | Calendar |
 
 ## 🎨 Actions (6)
 
@@ -597,6 +599,135 @@
 </div>
 ```
 
+## 🎭 Effects (2)
+
+### Hover 3D
+```html
+<!-- Effet 3D au survol -->
+<div class="hover-3d my-12 mx-2">
+  <figure class="max-w-100 rounded-2xl">
+    <img src="https://img.daisyui.com/images/stock/creditcard.webp" alt="Card" />
+  </figure>
+  <div></div><div></div><div></div><div></div>
+  <div></div><div></div><div></div><div></div>
+</div>
+```
+
+**Note** : Nécessite 9 enfants (1 contenu + 8 zones de survol)
+
+### Hover Gallery
+```html
+<!-- Galerie d'images au survol horizontal -->
+<figure class="hover-gallery max-w-60">
+  <img src="https://img.daisyui.com/images/stock/daisyui-hat-1.webp" />
+  <img src="https://img.daisyui.com/images/stock/daisyui-hat-2.webp" />
+  <img src="https://img.daisyui.com/images/stock/daisyui-hat-3.webp" />
+  <img src="https://img.daisyui.com/images/stock/daisyui-hat-4.webp" />
+</figure>
+```
+
+**Note** : Max 10 images, images doivent avoir mêmes dimensions
+
+## 📱 Nouveaux Composants v5
+
+### Calendar
+```html
+<!-- Styles pour bibliothèques calendrier (Cally, Pikaday, React Day Picker) -->
+<calendar-date class="cally"></calendar-date>
+
+<!-- Ou avec Pikaday -->
+<input type="text" class="input pika-single">
+```
+
+### Dock (Bottom Navigation)
+```html
+<div class="dock dock-md">
+  <button class="dock-active">
+    <svg class="w-6 h-6"><!-- Icon Home --></svg>
+    <span class="dock-label">Home</span>
+  </button>
+  <button>
+    <svg class="w-6 h-6"><!-- Icon Search --></svg>
+    <span class="dock-label">Search</span>
+  </button>
+  <button>
+    <svg class="w-6 h-6"><!-- Icon Profile --></svg>
+    <span class="dock-label">Profile</span>
+  </button>
+</div>
+```
+
+**Tailles** : `dock-xs`, `dock-sm`, `dock-md`, `dock-lg`, `dock-xl`
+
+### Fieldset
+```html
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">Informations personnelles</legend>
+  <input type="text" class="input input-bordered" placeholder="Nom" />
+  <input type="email" class="input input-bordered" placeholder="Email" />
+  <p class="label">Tous les champs sont obligatoires</p>
+</fieldset>
+```
+
+### Filter
+```html
+<!-- Groupe de radio buttons avec bouton reset -->
+<form class="filter">
+  <input class="btn btn-square" type="reset" value="×"/>
+  <input class="btn" type="radio" name="filter" aria-label="Tous"/>
+  <input class="btn" type="radio" name="filter" aria-label="Actifs"/>
+  <input class="btn" type="radio" name="filter" aria-label="Archivés"/>
+</form>
+```
+
+### List
+```html
+<ul class="list">
+  <li class="list-row">
+    <span>Item 1</span>
+    <span>Description</span>
+    <button class="btn btn-sm">Action</button>
+  </li>
+  <li class="list-row">
+    <span>Item 2</span>
+    <span>Autre description</span>
+    <button class="btn btn-sm">Action</button>
+  </li>
+</ul>
+```
+
+### Status
+```html
+<!-- Petit icône de statut (online/offline) -->
+<span class="status status-success"></span>
+<span class="status status-error"></span>
+<span class="status status-warning status-lg"></span>
+```
+
+**Tailles** : `status-xs`, `status-sm`, `status-md`, `status-lg`, `status-xl`
+
+### Text Rotate
+```html
+<!-- Animation rotation de texte (2-6 lignes) -->
+<span class="text-rotate text-7xl font-bold">
+  <span class="justify-items-center">
+    <span>DESIGN</span>
+    <span>DEVELOP</span>
+    <span>DEPLOY</span>
+    <span>SCALE</span>
+  </span>
+</span>
+```
+
+**Note** : Durée par défaut 10s, personnalisable avec `duration-{ms}`
+
+### Validator
+```html
+<!-- Validation couleurs pour formulaires -->
+<input type="email" class="input validator" required />
+<p class="validator-hint">Email invalide</p>
+```
+
 ## ✅ Best Practices
 
 1. **Accessibilité** : Toujours utiliser `aria-label` pour icônes et boutons sans texte
@@ -610,8 +741,8 @@
 - **Documentation officielle** : https://daisyui.com/components
 - **Playground** : https://daisyui.com/components (essayer les composants)
 - **GitHub** : https://github.com/saadeghi/daisyui
-- **Version** : DaisyUI v5.5.0
+- **Version** : DaisyUI v5.5.x
 
 ---
 
-**65 composants** pour créer des interfaces modernes rapidement
+**75+ composants DaisyUI v5** pour créer des interfaces modernes rapidement

@@ -1,10 +1,10 @@
-# 🎨 Thèmes Personnalisés DaisyUI
+# 🎨 Thèmes Personnalisés DaisyUI v5
 
-Guide complet pour créer des thèmes personnalisés DaisyUI. [Documentation officielle](https://daisyui.com/docs/themes/)
+Guide complet pour créer des thèmes personnalisés DaisyUI v5 avec format **OKLCH**. [Documentation officielle](https://daisyui.com/docs/themes/)
 
 ## 📋 Comprendre les Thèmes
 
-DaisyUI utilise **variables CSS** pour définir l'apparence. Chaque composant référence ces variables, permettant de changer l'UI complète en modifiant le thème.
+DaisyUI v5 utilise **variables CSS** avec format **OKLCH** pour définir l'apparence. Chaque composant référence ces variables, permettant de changer l'UI complète en modifiant le thème.
 
 ### Couleurs Sémantiques
 
@@ -17,79 +17,82 @@ DaisyUI utilise **variables CSS** pour définir l'apparence. Chaque composant r�
 | `base-100/200/300` | Arrière-plans (clair → foncé) | `base-content` |
 | `info/success/warning/error` | États | `-content` variants |
 
-## 🎨 Variables CSS Complètes
+## 🎨 Format OKLCH (DaisyUI v5)
 
-### Format HSL (DaisyUI v4 - CDN Compatible)
+**OKLCH** : `oklch(L% C H)` où :
+- **L** (Lightness) : 0-100% luminosité
+- **C** (Chroma) : 0-0.4 intensité couleur
+- **H** (Hue) : 0-360° teinte
+
+### Template Complet
 
 ```css
-[data-theme="nom-theme"] {
-  /* Principales */
-  --p: 0 0% 100%;              /* primary */
-  --pc: 0 0% 0%;               /* primary-content */
-  --s: 0 0% 90%;               /* secondary */
-  --sc: 0 0% 0%;               /* secondary-content */
-  --a: 0 0% 80%;               /* accent */
-  --ac: 0 0% 0%;               /* accent-content */
+@plugin "daisyui/theme" {
+  name: "mon-theme";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  /* Couleurs principales */
+  --color-primary: oklch(55% 0.3 240);
+  --color-primary-content: oklch(98% 0.01 240);
+  --color-secondary: oklch(70% 0.25 200);
+  --color-secondary-content: oklch(98% 0.01 200);
+  --color-accent: oklch(65% 0.25 160);
+  --color-accent-content: oklch(98% 0.01 160);
 
   /* Neutres */
-  --n: 0 0% 20%;               /* neutral */
-  --nc: 0 0% 100%;             /* neutral-content */
-  --b1: 0 0% 100%;             /* base-100 */
-  --b2: 0 0% 95%;              /* base-200 */
-  --b3: 0 0% 90%;              /* base-300 */
-  --bc: 0 0% 0%;               /* base-content */
+  --color-neutral: oklch(50% 0.05 240);
+  --color-neutral-content: oklch(98% 0.01 240);
+
+  /* Bases */
+  --color-base-100: oklch(98% 0.02 240);
+  --color-base-200: oklch(95% 0.03 240);
+  --color-base-300: oklch(92% 0.04 240);
+  --color-base-content: oklch(20% 0.05 240);
 
   /* États */
-  --in: 198 93% 60%;           /* info */
-  --su: 158 64% 52%;           /* success */
-  --wa: 43 96% 56%;            /* warning */
-  --er: 0 91% 71%;             /* error */
+  --color-info: oklch(70% 0.2 220);
+  --color-info-content: oklch(98% 0.01 220);
+  --color-success: oklch(65% 0.25 140);
+  --color-success-content: oklch(98% 0.01 140);
+  --color-warning: oklch(80% 0.25 80);
+  --color-warning-content: oklch(20% 0.05 80);
+  --color-error: oklch(65% 0.3 30);
+  --color-error-content: oklch(98% 0.01 30);
 
   /* Propriétés */
-  --rounded-box: 1rem;         /* Border radius cartes */
-  --rounded-btn: 0.5rem;       /* Border radius boutons */
-  --animation-btn: 0.25s;      /* Durée animation */
-  --btn-focus-scale: 0.95;     /* Scale au focus */
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
 }
 ```
 
-**Format HSL** : `H S% L%` où H=0-360 (teinte), S=0-100% (saturation), L=0-100% (luminosité)
-
-## 🛠️ Méthodes de Création
-
-### Méthode 1 : Build (tailwind.config.js)
-
-```javascript
-module.exports = {
-  plugins: [require('daisyui')],
-  daisyui: {
-    themes: [
-      {
-        'mon-theme': {
-          'primary': '#3b82f6',
-          'secondary': '#10b981',
-          'accent': '#f59e0b',
-          'neutral': '#1f2937',
-          'base-100': '#ffffff',
-          'info': '#3b82f6',
-          'success': '#10b981',
-          'warning': '#f59e0b',
-          'error': '#ef4444',
-        },
-      },
-    ],
-  },
-}
-```
-
-### Méthode 2 : CSS (CDN)
+## 🛠️ Création de Thème
 
 ```css
-[data-theme="mon-theme"] {
-  --p: 217 91% 60%;    /* #3b82f6 */
-  --s: 158 64% 52%;    /* #10b981 */
-  --a: 38 92% 50%;     /* #f59e0b */
-  /* ... autres variables */
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Votre thème personnalisé */
+@plugin "daisyui/theme" {
+  name: "mon-theme";
+  default: true;
+  color-scheme: light;
+
+  --color-primary: oklch(60% 0.2 240);
+  --color-secondary: oklch(70% 0.15 180);
+  --color-accent: oklch(65% 0.25 50);
+  --color-base-100: oklch(98% 0.02 240);
+  --color-base-200: oklch(95% 0.03 240);
+  --color-base-300: oklch(92% 0.04 240);
+
+  --radius-box: 0.5rem;
 }
 ```
 
@@ -97,28 +100,52 @@ module.exports = {
 
 Thème clair inspiré de l'océan avec tons bleus/verts apaisants.
 
-### Configuration
+### Configuration (CSS Build)
 
 ```css
-[data-theme="ocean-breeze"] {
-  --p: 199 89% 48%;        /* primary: #0ea5e9 (Bleu océan) */
-  --pc: 0 0% 100%;
-  --s: 173 80% 40%;        /* secondary: #14b8a6 (Turquoise) */
-  --sc: 0 0% 100%;
-  --a: 20 91% 52%;         /* accent: #f97316 (Orange corail) */
-  --ac: 0 0% 100%;
-  --n: 215 25% 27%;        /* neutral: #334155 */
-  --nc: 210 40% 98%;
-  --b1: 0 0% 100%;         /* base-100: #ffffff */
-  --b2: 214 32% 97%;       /* base-200: #f1f5f9 */
-  --b3: 214 32% 91%;       /* base-300: #e2e8f0 */
-  --bc: 222 47% 11%;
-  --in: 199 89% 48%;
-  --su: 158 64% 52%;
-  --wa: 38 92% 50%;
-  --er: 0 84% 60%;
-  --rounded-box: 1rem;
-  --rounded-btn: 0.75rem;
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "ocean-breeze";
+  default: true;
+  color-scheme: light;
+
+  /* Couleurs principales - Bleu océan */
+  --color-primary: oklch(65% 0.19 220);        /* #0ea5e9 (Bleu océan) */
+  --color-primary-content: oklch(98% 0.01 220);
+  --color-secondary: oklch(62% 0.16 180);      /* #14b8a6 (Turquoise) */
+  --color-secondary-content: oklch(98% 0.01 180);
+  --color-accent: oklch(70% 0.22 40);          /* #f97316 (Orange corail) */
+  --color-accent-content: oklch(98% 0.01 40);
+
+  /* Neutres */
+  --color-neutral: oklch(35% 0.04 240);        /* #334155 */
+  --color-neutral-content: oklch(98% 0.02 240);
+
+  /* Bases */
+  --color-base-100: oklch(100% 0 0);           /* #ffffff */
+  --color-base-200: oklch(97% 0.01 240);       /* #f1f5f9 */
+  --color-base-300: oklch(92% 0.01 240);       /* #e2e8f0 */
+  --color-base-content: oklch(20% 0.02 240);
+
+  /* États */
+  --color-info: oklch(65% 0.19 220);
+  --color-info-content: oklch(98% 0.01 220);
+  --color-success: oklch(68% 0.17 150);
+  --color-success-content: oklch(98% 0.01 150);
+  --color-warning: oklch(75% 0.20 80);
+  --color-warning-content: oklch(20% 0.02 80);
+  --color-error: oklch(68% 0.20 25);
+  --color-error-content: oklch(98% 0.01 25);
+
+  /* Propriétés */
+  --radius-box: 1rem;
+  --radius-field: 0.75rem;
+  --radius-selector: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
 }
 ```
 
@@ -128,9 +155,9 @@ Thème clair inspiré de l'océan avec tons bleus/verts apaisants.
 <!DOCTYPE html>
 <html data-theme="ocean-breeze">
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>/* Insérer CSS du thème ci-dessus */</style>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>/* Insérer CSS du thème ci-dessus (version @plugin) */</style>
 </head>
 <body>
   <div class="min-h-screen bg-base-200">
@@ -213,28 +240,53 @@ Thème clair inspiré de l'océan avec tons bleus/verts apaisants.
 
 Thème sombre professionnel avec accents violets et contraste élevé.
 
-### Configuration
+### Configuration (CSS Build)
 
 ```css
-[data-theme="midnight-pro"] {
-  --p: 258 90% 66%;        /* primary: #8b5cf6 (Violet) */
-  --pc: 270 100% 98%;
-  --s: 188 94% 43%;        /* secondary: #06b6d4 (Cyan) */
-  --sc: 185 96% 97%;
-  --a: 347 77% 60%;        /* accent: #f43f5e (Rose) */
-  --ac: 0 0% 100%;
-  --n: 215 28% 17%;        /* neutral: #1e293b */
-  --nc: 214 32% 97%;
-  --b1: 222 47% 11%;       /* base-100: #0f172a (Bleu nuit) */
-  --b2: 222 50% 7%;        /* base-200: #0a0f1e */
-  --b3: 222 54% 4%;        /* base-300: #050914 */
-  --bc: 214 32% 91%;
-  --in: 217 91% 60%;
-  --su: 142 76% 45%;
-  --wa: 48 96% 47%;
-  --er: 0 84% 60%;
-  --rounded-box: 0.75rem;
-  --rounded-btn: 0.5rem;
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "midnight-pro";
+  prefersdark: true;
+  color-scheme: dark;
+
+  /* Couleurs principales - Violet & Cyan */
+  --color-primary: oklch(68% 0.23 285);        /* #8b5cf6 (Violet) */
+  --color-primary-content: oklch(98% 0.02 285);
+  --color-secondary: oklch(58% 0.18 210);      /* #06b6d4 (Cyan) */
+  --color-secondary-content: oklch(98% 0.02 210);
+  --color-accent: oklch(65% 0.22 350);         /* #f43f5e (Rose) */
+  --color-accent-content: oklch(98% 0.01 350);
+
+  /* Neutres */
+  --color-neutral: oklch(25% 0.03 240);        /* #1e293b */
+  --color-neutral-content: oklch(92% 0.01 240);
+
+  /* Bases - Dark */
+  --color-base-100: oklch(18% 0.02 240);       /* #0f172a (Bleu nuit) */
+  --color-base-200: oklch(13% 0.02 240);       /* #0a0f1e */
+  --color-base-300: oklch(8% 0.02 240);        /* #050914 */
+  --color-base-content: oklch(92% 0.01 240);
+
+  /* États */
+  --color-info: oklch(65% 0.20 240);
+  --color-info-content: oklch(98% 0.01 240);
+  --color-success: oklch(65% 0.18 150);
+  --color-success-content: oklch(98% 0.01 150);
+  --color-warning: oklch(75% 0.22 85);
+  --color-warning-content: oklch(20% 0.02 85);
+  --color-error: oklch(68% 0.20 25);
+  --color-error-content: oklch(98% 0.01 25);
+
+  /* Propriétés */
+  --radius-box: 0.75rem;
+  --radius-field: 0.5rem;
+  --radius-selector: 0.75rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
 }
 ```
 
@@ -244,9 +296,9 @@ Thème sombre professionnel avec accents violets et contraste élevé.
 <!DOCTYPE html>
 <html data-theme="midnight-pro">
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>/* Insérer CSS du thème ci-dessus */</style>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>/* Insérer CSS du thème ci-dessus (version @plugin) */</style>
 </head>
 <body>
   <div class="min-h-screen bg-base-300">
@@ -399,78 +451,82 @@ function toggleTheme() {
 </div>
 ```
 
-## 🛠️ Utilitaires de Conversion
+## 🛠️ Conversion de Couleurs
 
-### Hex → HSL
+### Utiliser le Générateur Officiel
+
+Pour convertir vos couleurs HEX vers OKLCH, utilisez le **générateur de thème officiel DaisyUI** :
+
+👉 **[DaisyUI Theme Generator](https://daisyui.com/theme-generator/)**
+
+Le générateur permet de :
+- Entrer des couleurs HEX, RGB ou HSL
+- Conversion automatique vers OKLCH
+- Prévisualisation en temps réel
+- Export code CSS prêt à l'emploi
+- Test sur tous les composants DaisyUI
+
+### Conversion Manuelle Approximative
 
 ```javascript
 /**
- * Convertit HEX en HSL pour DaisyUI
- * @param {string} hex - "#RRGGBB"
- * @returns {string} - "H S% L%"
+ * Conversion approximative HEX → OKLCH (valeurs estimées)
+ * Pour production, utilisez le générateur officiel DaisyUI
  */
-function hexToHSL(hex) {
+function hexToOKLCH(hex) {
+  // Convertir HEX vers RGB
   const r = parseInt(hex.slice(1, 3), 16) / 255;
   const g = parseInt(hex.slice(3, 5), 16) / 255;
   const b = parseInt(hex.slice(5, 7), 16) / 255;
 
+  // Calcul approximatif de Lightness
+  const L = Math.round((0.2126 * r + 0.7152 * g + 0.0722 * b) * 100);
+
+  // Chroma et Hue (simplifiés - utiliser le générateur pour précision)
   const max = Math.max(r, g, b);
   const min = Math.min(r, g, b);
-  const diff = max - min;
+  const C = ((max - min) * 0.3).toFixed(2); // Approximation
 
-  let h = 0, s = 0, l = (max + min) / 2;
-
-  if (diff !== 0) {
-    s = l > 0.5 ? diff / (2 - max - min) : diff / (max + min);
-
-    switch (max) {
-      case r: h = ((g - b) / diff + (g < b ? 6 : 0)) / 6; break;
-      case g: h = ((b - r) / diff + 2) / 6; break;
-      case b: h = ((r - g) / diff + 4) / 6; break;
-    }
+  // Hue
+  let H = 0;
+  if (max !== min) {
+    if (max === r) H = 60 * (((g - b) / (max - min)) % 6);
+    else if (max === g) H = 60 * (((b - r) / (max - min)) + 2);
+    else H = 60 * (((r - g) / (max - min)) + 4);
   }
+  H = Math.round(H < 0 ? H + 360 : H);
 
-  return `${Math.round(h * 360)} ${Math.round(s * 100)}% ${Math.round(l * 100)}%`;
+  return `oklch(${L}% ${C} ${H})`;
 }
 
-// Exemple
-console.log(hexToHSL('#3b82f6')); // "217 91% 60%"
+// Exemple (approximatif)
+console.log(hexToOKLCH('#3b82f6')); // "oklch(60% 0.20 240)" (approx)
 ```
 
-### Générer Palette
-
-```javascript
-function generatePalette(primaryHex) {
-  const primary = hexToHSL(primaryHex);
-  const [h, s, l] = primary.split(' ').map(v => parseInt(v));
-
-  return {
-    primary: primary,
-    secondary: `${(h + 180) % 360} ${s}% ${l}%`,  // Complémentaire
-    accent: `${(h + 120) % 360} ${s}% ${l}%`,     // Triadique
-    neutral: `${h} ${Math.max(0, s - 80)}% 20%`,  // Désaturé foncé
-  };
-}
-```
+**⚠️ Important** : Cette conversion est approximative. Pour des thèmes de production, utilisez **toujours** le [générateur officiel DaisyUI](https://daisyui.com/theme-generator/) pour des valeurs OKLCH précises.
 
 ## 📚 Ressources
 
 ### Outils
-- [DaisyUI Theme Generator](https://daisyui.com/theme-generator/) - Officiel
-- [Coolors](https://coolors.co/) - Palettes
-- [HSL Color Picker](https://hslpicker.com/) - Convertisseur
+- [DaisyUI Theme Generator](https://daisyui.com/theme-generator/) - Officiel (OKLCH)
+- [Coolors](https://coolors.co/) - Palettes couleurs
+- [OKLCH Color Picker](https://oklch.com/) - Convertisseur OKLCH
 
 ### Documentation
-- [DaisyUI Themes](https://daisyui.com/docs/themes/)
+- [DaisyUI v5 Themes](https://daisyui.com/docs/themes/)
+- [DaisyUI v5 Config](https://daisyui.com/docs/config/)
 - [TailwindCSS Colors](https://tailwindcss.com/docs/customizing-colors)
+- [OKLCH Format](https://oklch.com/) - Comprendre OKLCH
 
 ### Best Practices
-1. **Contraste** : Ratio minimum 4.5:1 pour texte
-2. **Cohérence** : 3-5 couleurs principales max
-3. **Accessibilité** : Tester avec WAVE/axe DevTools
-4. **Performance** : CSS Variables pour changement dynamique
-5. **35 Thèmes intégrés** : light, dark, cupcake, bumblebee, emerald, corporate, synthwave, retro, cyberpunk, valentine, halloween, garden, forest, aqua, lofi, pastel, fantasy, wireframe, black, luxury, dracula, cmyk, autumn, business, acid, lemonade, night, coffee, winter, dim, nord, sunset
+1. **Format OKLCH** : Utiliser OKLCH pour DaisyUI v5 (meilleure gamme de couleurs)
+2. **Générateur officiel** : Toujours utiliser le générateur DaisyUI pour thèmes production
+3. **Contraste** : Ratio minimum 4.5:1 pour texte (WCAG AA)
+4. **Cohérence** : 3-5 couleurs principales max pour clarté visuelle
+5. **Accessibilité** : Tester avec WAVE/axe DevTools
+6. **Performance** : CSS Variables pour changement dynamique sans rechargement
+7. **35 Thèmes intégrés** : light, dark, cupcake, bumblebee, emerald, corporate, synthwave, retro, cyberpunk, valentine, halloween, garden, forest, aqua, lofi, pastel, fantasy, wireframe, black, luxury, dracula, cmyk, autumn, business, acid, lemonade, night, coffee, winter, dim, nord, sunset, caramellatte, abyss, silk
 
 ---
 
-**2 thèmes personnalisés prêts à l'emploi** : Ocean Breeze (light) & Midnight Pro (dark)
+**2 thèmes personnalisés prêts à l'emploi** : Ocean Breeze (light) & Midnight Pro (dark) - Format OKLCH DaisyUI v5

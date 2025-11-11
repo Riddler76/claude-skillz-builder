@@ -1,11 +1,11 @@
 ---
 name: tailwind-daisyui-heroicons-expert
-description: Expert développement frontend TailwindCSS 4, DaisyUI 5 et HeroIcons v2. Créer interfaces modernes avec 63 composants DaisyUI, 316 icônes HeroIcons (4 styles), 35 thèmes intégrés, dark/light mode. Utiliser pour dashboards, formulaires, landing pages, design systems, SPAs. Compatible CDN et build.
+description: Expert développement frontend TailwindCSS 4, DaisyUI 5 et HeroIcons v2. Créer interfaces modernes avec 75+ composants DaisyUI, 316 icônes HeroIcons (4 styles), 35 thèmes intégrés, dark/light mode. Utiliser pour dashboards, formulaires, landing pages, design systems, SPAs. Compatible CDN et build.
 ---
 
 # TailwindCSS 4 + DaisyUI 5 + HeroIcons Expert
 
-Expert en développement frontend moderne : **63 composants DaisyUI**, **316 icônes HeroIcons** (4 styles), **35 thèmes** intégrés, **theming personnalisé** complet.
+Expert en développement frontend moderne : **75+ composants DaisyUI v5**, **316 icônes HeroIcons** (4 styles), **35 thèmes** intégrés, **theming personnalisé** complet.
 
 ## 🚀 Quick Start
 
@@ -15,8 +15,8 @@ Expert en développement frontend moderne : **63 composants DaisyUI**, **316 ic�
 <!DOCTYPE html>
 <html data-theme="light">
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
   <button class="btn btn-primary">Hello DaisyUI!</button>
@@ -24,7 +24,7 @@ Expert en développement frontend moderne : **63 composants DaisyUI**, **316 ic�
 </html>
 ```
 
-**Note CDN**: Utilise DaisyUI v4.12.10 (variables HSL) pour compatibilité CDN. Pour production, préférez le build.
+**Note CDN**: Utilise DaisyUI v5 (OKLCH) avec Tailwind CSS v4 browser. Pour production, préférez le build npm.
 
 ### Via Build (Production)
 
@@ -50,17 +50,18 @@ npx tailwindcss -i ./app.css -o ./dist/output.css --watch
 
 ---
 
-## 📚 Composants DaisyUI (63)
+## 📚 Composants DaisyUI v5 (75+)
 
 ### Catégories Principales
 
-**Actions (6)**: Button, Dropdown, Modal, Swap, Theme Controller, FAB
-**Data Display (17)**: Card, Badge, Avatar, Table, Stat, Carousel, Timeline...
-**Navigation (8)**: Navbar, Menu, Tabs, Breadcrumbs, Pagination, Steps...
-**Forms (14)**: Input, Checkbox, Radio, Select, Range, Toggle, File Input...
-**Feedback (6)**: Alert, Progress, Loading, Toast, Skeleton...
-**Layout (6)**: Hero, Drawer, Divider, Footer, Artboard, Join
+**Actions (7)**: Button, Dropdown, Modal, Swap, Theme Controller, FAB, Filter
+**Data Display (20)**: Card, Badge, Avatar, Table, Stat, Carousel, Timeline, List, Hover Gallery, Hover 3D, Text Rotate, Status...
+**Navigation (9)**: Navbar, Menu, Tabs, Breadcrumbs, Pagination, Steps, Dock...
+**Forms (15)**: Input, Checkbox, Radio, Select, Range, Toggle, File Input, Fieldset, Validator...
+**Feedback (6)**: Alert, Progress, Loading, Toast, Skeleton, Tooltip
+**Layout (7)**: Hero, Drawer, Divider, Footer, Artboard, Join, Stack
 **Mockup (4)**: Browser, Code, Phone, Window
+**Utilities (3+)**: Calendar, Indicator, Mask...
 
 ➡️ **Voir [COMPONENTS.md](./COMPONENTS.md)** pour la liste complète avec exemples de code
 
@@ -169,32 +170,27 @@ document.querySelector('[data-choose-theme]').addEventListener('change', (e) => 
 **Créer vos propres thèmes** avec couleurs et styles uniques :
 
 ➡️ **Voir [THEMES.md](./THEMES.md)** pour :
-- Guide complet de création (DaisyUI v4 HSL + v5 OKLCH)
+- Guide complet de création DaisyUI v5 (format OKLCH)
 - **2 thèmes prêts à l'emploi** : 🌞 Ocean Breeze (light) + 🌙 Midnight Pro (dark)
-- Outils de conversion HEX → HSL/OKLCH
+- Outils de conversion HEX → OKLCH
 - Exemples HTML complets
 
-**Aperçu rapide** (DaisyUI v4 CDN):
-```css
-[data-theme="mon-theme"] {
-  --p: 217 91% 60%;    /* primary (HSL) */
-  --s: 158 64% 52%;    /* secondary */
-  --a: 38 92% 50%;     /* accent */
-  --n: 218 18% 17%;    /* neutral */
-  --b1: 0 0% 100%;     /* base-100 */
-  --b2: 220 14% 96%;   /* base-200 */
-  --b3: 220 13% 91%;   /* base-300 */
-}
-```
-
-**Build DaisyUI v5** (OKLCH):
+**DaisyUI v5** (OKLCH - Recommandé):
 ```css
 @plugin "daisyui/theme" {
   name: "mon-theme";
   default: true;
+  color-scheme: light;
+
   --color-primary: oklch(60% 0.2 240);
   --color-secondary: oklch(70% 0.15 180);
   --color-accent: oklch(65% 0.25 50);
+  --color-base-100: oklch(98% 0.02 240);
+  --color-base-200: oklch(95% 0.03 240);
+  --color-base-300: oklch(92% 0.04 240);
+
+  --radius-box: 0.5rem;
+  --radius-field: 0.25rem;
 }
 ```
 
@@ -573,13 +569,13 @@ Quand l'utilisateur demande :
 - **TailwindCSS Play** : https://play.tailwindcss.com
 
 ### Fichiers Support
-- **[COMPONENTS.md](./COMPONENTS.md)** : 63 composants avec code
+- **[COMPONENTS.md](./COMPONENTS.md)** : 75+ composants DaisyUI v5 avec code
 - **[HEROICONS.md](./HEROICONS.md)** : 316 icônes cataloguées
-- **[THEMES.md](./THEMES.md)** : Guide thèmes + 2 exemples prêts
-- **[EXAMPLES.md](./EXAMPLES.md)** : Applications complètes
+- **[THEMES.md](./THEMES.md)** : Guide thèmes OKLCH + 2 exemples prêts
+- **[EXAMPLES.md](./EXAMPLES.md)** : Applications complètes DaisyUI v5
 
 ---
 
-**Version** : TailwindCSS 4 + DaisyUI 5.5.0 + HeroIcons v2.1.5
-**Compatibilité** : CDN (DaisyUI 4.12.10) + Build (DaisyUI 5.5.0)
+**Version** : TailwindCSS 4 + DaisyUI 5.5.x + HeroIcons v2.1.5
+**Compatibilité** : CDN v5 + Build npm
 **License** : MIT pour tous les composants
