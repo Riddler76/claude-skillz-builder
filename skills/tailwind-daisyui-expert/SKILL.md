@@ -162,6 +162,46 @@ DaisyUI détecte automatiquement `prefers-color-scheme`.
 </div>
 ```
 
+### 📚 Thèmes Personnalisés
+
+Pour créer vos propres thèmes personnalisés avec des couleurs et styles uniques, consultez **[THEMES.md](./THEMES.md)** qui contient :
+
+- **Guide complet** de création de thèmes DaisyUI
+- **Variables CSS** détaillées (couleurs HSL, bordures, animations)
+- **2 Exemples de thèmes** prêts à l'emploi :
+  - 🌞 **Ocean Breeze** : Thème clair inspiré de l'océan (bleu/turquoise)
+  - 🌙 **Midnight Pro** : Thème sombre professionnel (violet/cyan)
+- **Outils de conversion** HEX → HSL
+- **Code complet** avec HTML d'exemple
+
+**Aperçu rapide - Créer un thème personnalisé :**
+
+```css
+[data-theme="mon-theme"] {
+  --p: 217 91% 60%;        /* primary (HSL) */
+  --pc: 0 0% 100%;         /* primary-content */
+  --s: 158 64% 52%;        /* secondary */
+  --sc: 0 0% 100%;         /* secondary-content */
+  --a: 38 92% 50%;         /* accent */
+  --ac: 0 0% 100%;         /* accent-content */
+  --n: 218 18% 17%;        /* neutral */
+  --nc: 0 0% 100%;         /* neutral-content */
+  --b1: 0 0% 100%;         /* base-100 */
+  --b2: 220 14% 96%;       /* base-200 */
+  --b3: 220 13% 91%;       /* base-300 */
+  --bc: 218 18% 17%;       /* base-content */
+  --rounded-box: 1rem;     /* bordures */
+}
+```
+
+```html
+<html data-theme="mon-theme">
+  <!-- Votre contenu utilise automatiquement votre thème -->
+</html>
+```
+
+➡️ **Voir [THEMES.md](./THEMES.md) pour la documentation complète et les exemples détaillés**
+
 ## HeroIcons - Bibliothèque d'Icônes
 
 HeroIcons est la bibliothèque d'icônes officielle de TailwindCSS, créée par les mêmes auteurs. Elle contient **292 icônes** disponibles en **3 styles** différents.
