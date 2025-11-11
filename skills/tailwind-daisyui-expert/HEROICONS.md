@@ -1,23 +1,32 @@
-# Référence Complète HeroIcons
+# Référence Complète HeroIcons v2.1.5
 
-HeroIcons v2 contient **292 icônes** créées spécifiquement pour TailwindCSS. Chaque icône est disponible en **3 styles** : Outline (24x24), Solid (24x24), et Mini (20x20).
+HeroIcons v2.1.5 contient **316 icônes** créées spécifiquement pour TailwindCSS. Chaque icône est disponible en **4 styles** : Outline (24x24, stroke 1.5px), Solid (24x24), Mini (20x20), et Micro (16x16).
 
-## 🎨 Styles d'Icônes
+## 🎨 4 Styles d'Icônes
 
-### Outline (24x24)
-- Trait fin et élégant
-- Parfait pour les interfaces aérées
+### Outline (24x24, stroke 1.5px)
+- Trait fin et élégant avec stroke de 1.5 pixels
+- Parfait pour les interfaces aérées (style par défaut)
 - Import : `@heroicons/react/24/outline`
+- Usage : Interfaces principales, navigation, formulaires
 
-### Solid (24x24)
-- Rempli et audacieux
-- Idéal pour les CTA et boutons importants
+### Solid (24x24, filled)
+- Rempli et audacieux, sans stroke
+- Idéal pour les CTA, boutons importants, états actifs
 - Import : `@heroicons/react/24/solid`
+- Usage : Call-to-action, éléments focus, icônes d'état
 
-### Mini (20x20)
-- Compact et lisible
-- Pour badges, labels, petits éléments
+### Mini (20x20, filled)
+- Compact et lisible, version remplie
+- Pour badges, labels, petits espaces UI
 - Import : `@heroicons/react/20/solid`
+- Usage : Badges, chips, éléments inline, menus compacts
+
+### Micro (16x16, filled)
+- Ultra compact pour espaces très réduits
+- Pour texte inline, très petits badges, indicateurs
+- Import : `@heroicons/react/16/solid`
+- Usage : Texte inline, micro-badges, indicators, dense UI
 
 ## 📦 Catégories d'Icônes
 

@@ -1,23 +1,40 @@
 ---
 name: tailwind-daisyui-heroicons-expert
-description: Expert en développement frontend avec TailwindCSS, DaisyUI et HeroIcons. Utiliser pour créer des interfaces HTML/CSS, implémenter des composants DaisyUI (63 disponibles), intégrer des icônes HeroIcons (292 en 3 styles), gérer les thèmes (35 intégrés), configurer le dark/light mode. Idéal pour formulaires, dashboards, landing pages, design systems, iconographie.
+description: Expert développement frontend TailwindCSS 4, DaisyUI 5 et HeroIcons v2. Créer interfaces modernes avec 63 composants DaisyUI, 316 icônes HeroIcons (4 styles), 35 thèmes intégrés, dark/light mode. Utiliser pour dashboards, formulaires, landing pages, design systems, SPAs. Compatible CDN et build.
 ---
 
-# TailwindCSS, DaisyUI & HeroIcons Expert Skill
+# TailwindCSS 4 + DaisyUI 5 + HeroIcons Expert
 
-Expert en développement frontend avec TailwindCSS, DaisyUI et HeroIcons. Ce skill vous aide à créer des interfaces modernes avec les 63 composants DaisyUI, 292 icônes HeroIcons, gérer les thèmes (35 intégrés), et implémenter correctement le mode dark/light.
+Expert en développement frontend moderne : **63 composants DaisyUI**, **316 icônes HeroIcons** (4 styles), **35 thèmes** intégrés, **theming personnalisé** complet.
 
-## Configuration de Base
+## 🚀 Quick Start
 
-### Installation (TailwindCSS 4 + DaisyUI 5 + HeroIcons)
+### Via CDN (Prototypage Rapide)
 
-```bash
-npm install -D tailwindcss@latest @tailwindcss/cli@latest daisyui@latest
-npm install @heroicons/react
+```html
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <button class="btn btn-primary">Hello DaisyUI!</button>
+</body>
+</html>
 ```
 
-### Configuration CSS (input.css)
+**Note CDN**: Utilise DaisyUI v4.12.10 (variables HSL) pour compatibilité CDN. Pour production, préférez le build.
 
+### Via Build (Production)
+
+**Installation**:
+```bash
+npm install -D tailwindcss@latest daisyui@latest
+npm install @heroicons/react  # Pour React/Vue
+```
+
+**Configuration CSS** (`app.css`):
 ```css
 @import "tailwindcss";
 
@@ -26,35 +43,65 @@ npm install @heroicons/react
 }
 ```
 
-### Build
-
+**Build**:
 ```bash
-npx tailwindcss -i ./input.css -o ./output.css --watch
+npx tailwindcss -i ./app.css -o ./dist/output.css --watch
 ```
 
-## Gestion des Thèmes
+---
 
-### 35 Thèmes Intégrés
+## 📚 Composants DaisyUI (63)
 
-**Thèmes clairs :** light, cupcake, bumblebee, emerald, corporate, synthwave, retro, cyberpunk, valentine, garden, lofi, pastel, fantasy, wireframe, cmyk, autumn, acid, lemonade, winter, nord
+### Catégories Principales
 
-**Thèmes sombres :** dark, night, coffee, dim, sunset, dracula, business, forest, aqua, black, luxury, halloween
+**Actions (6)**: Button, Dropdown, Modal, Swap, Theme Controller, FAB
+**Data Display (17)**: Card, Badge, Avatar, Table, Stat, Carousel, Timeline...
+**Navigation (8)**: Navbar, Menu, Tabs, Breadcrumbs, Pagination, Steps...
+**Forms (14)**: Input, Checkbox, Radio, Select, Range, Toggle, File Input...
+**Feedback (6)**: Alert, Progress, Loading, Toast, Skeleton...
+**Layout (6)**: Hero, Drawer, Divider, Footer, Artboard, Join
+**Mockup (4)**: Browser, Code, Phone, Window
 
-**Personnalisables :** Vous pouvez modifier n'importe quel thème ou créer le vôtre
+➡️ **Voir [COMPONENTS.md](./COMPONENTS.md)** pour la liste complète avec exemples de code
 
-### Activer Plusieurs Thèmes
+### Exemple Rapide
+
+```html
+<!-- Card avec actions -->
+<div class="card w-96 bg-base-100 shadow-xl">
+  <figure><img src="image.jpg" alt="Product" /></figure>
+  <div class="card-body">
+    <h2 class="card-title">
+      Chaussures de Course
+      <div class="badge badge-secondary">NOUVEAU</div>
+    </h2>
+    <p>Description du produit ici</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Acheter</button>
+    </div>
+  </div>
+</div>
+```
+
+---
+
+## 🎨 Thèmes (35 Intégrés)
+
+### Liste Complète
+
+**Clairs (20)**: light, cupcake, bumblebee, emerald, corporate, synthwave, retro, cyberpunk, valentine, garden, lofi, pastel, fantasy, wireframe, cmyk, autumn, acid, lemonade, winter, nord, caramellatte, silk
+
+**Sombres (15)**: dark, night, coffee, dim, sunset, dracula, business, forest, aqua, black, luxury, halloween, abyss
+
+### Configuration
 
 ```css
-@import "tailwindcss";
-
+/* Activer plusieurs thèmes */
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark, cupcake, cyberpunk, forest, night;
+  themes: light --default, dark --prefersdark, cupcake, cyberpunk;
 }
-```
 
-### Activer TOUS les Thèmes
-
-```css
+/* Activer TOUS les thèmes */
 @plugin "daisyui" {
   themes: all;
 }
@@ -63,200 +110,148 @@ npx tailwindcss -i ./input.css -o ./output.css --watch
 ### Appliquer un Thème
 
 ```html
-<!-- Thème global -->
+<!-- Global -->
 <html data-theme="dark">
 
-<!-- Thème local (peut être imbriqué) -->
+<!-- Local (imbrication possible) -->
 <div data-theme="light">
-  Ce contenu utilise toujours le thème light
-  <span data-theme="cyberpunk">Ce span utilise cyberpunk</span>
+  Contenu en light theme
+  <span data-theme="cyberpunk">Cyberpunk ici</span>
 </div>
 ```
 
-## Gestion Dark/Light Mode
-
-### Méthode 1 : Détection Automatique du Système
-
-DaisyUI détecte automatiquement `prefers-color-scheme`.
-
-```css
-@plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
-}
-```
+### Toggle Dark/Light avec JavaScript
 
 ```html
-<!-- Classes Tailwind pour réagir au dark mode système -->
-<div class="bg-white dark:bg-gray-900">
-  <p class="text-gray-900 dark:text-gray-100">Texte adaptatif</p>
-  <img src="logo-light.svg" class="block dark:hidden" />
-  <img src="logo-dark.svg" class="hidden dark:block" />
-</div>
-```
-
-### Méthode 2 : Toggle Manuel avec theme-controller
-
-```html
-<!-- Toggle simple -->
-<input type="checkbox" value="dark" class="theme-controller toggle" />
-
-<!-- Bouton de switch personnalisé -->
+<!-- Toggle avec theme-controller -->
 <label class="swap swap-rotate">
-  <input type="checkbox" value="dark" class="theme-controller" />
-
-  <!-- Icône soleil -->
-  <svg class="swap-on fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"/>
-  </svg>
-
-  <!-- Icône lune -->
-  <svg class="swap-off fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"/>
-  </svg>
+  <input type="checkbox" class="theme-controller" value="dark" />
+  <svg class="swap-on fill-current w-8 h-8"><!-- Icône soleil --></svg>
+  <svg class="swap-off fill-current w-8 h-8"><!-- Icône lune --></svg>
 </label>
+
+<script>
+// Sauvegarder le thème
+document.querySelectorAll('.theme-controller').forEach(toggle => {
+  toggle.addEventListener('change', (e) => {
+    const theme = e.target.checked ? e.target.value : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  });
+});
+
+// Restaurer au chargement
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+</script>
 ```
 
-### Méthode 3 : Sélecteur Dropdown Multi-Thèmes
+### Sélecteur Multi-Thèmes
 
 ```html
 <select class="select select-bordered" data-choose-theme>
-  <option value="">Default</option>
   <option value="light">Light</option>
   <option value="dark">Dark</option>
   <option value="cupcake">Cupcake</option>
   <option value="cyberpunk">Cyberpunk</option>
-  <option value="forest">Forest</option>
 </select>
 
 <script>
-  const themeSelect = document.querySelector('[data-choose-theme]');
-  themeSelect.addEventListener('change', (e) => {
-    document.documentElement.setAttribute('data-theme', e.target.value);
-    localStorage.setItem('theme', e.target.value);
-  });
-
-  // Restaurer le thème sauvegardé
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    themeSelect.value = savedTheme;
-  }
+document.querySelector('[data-choose-theme]').addEventListener('change', (e) => {
+  document.documentElement.setAttribute('data-theme', e.target.value);
+  localStorage.setItem('theme', e.target.value);
+});
 </script>
 ```
 
-### Variant dark: Personnalisé pour Thème Spécifique
+### 🎨 Thèmes Personnalisés
 
-```css
-@import "tailwindcss";
+**Créer vos propres thèmes** avec couleurs et styles uniques :
 
-@plugin "daisyui" {
-  themes: winter --default, night --prefersdark;
-}
+➡️ **Voir [THEMES.md](./THEMES.md)** pour :
+- Guide complet de création (DaisyUI v4 HSL + v5 OKLCH)
+- **2 thèmes prêts à l'emploi** : 🌞 Ocean Breeze (light) + 🌙 Midnight Pro (dark)
+- Outils de conversion HEX → HSL/OKLCH
+- Exemples HTML complets
 
-@custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
-```
-
-```html
-<div class="p-10 dark:p-20 dark:bg-base-300">
-  Padding 10 sur winter, padding 20 sur night
-</div>
-```
-
-### 📚 Thèmes Personnalisés
-
-Pour créer vos propres thèmes personnalisés avec des couleurs et styles uniques, consultez **[THEMES.md](./THEMES.md)** qui contient :
-
-- **Guide complet** de création de thèmes DaisyUI
-- **Variables CSS** détaillées (couleurs HSL, bordures, animations)
-- **2 Exemples de thèmes** prêts à l'emploi :
-  - 🌞 **Ocean Breeze** : Thème clair inspiré de l'océan (bleu/turquoise)
-  - 🌙 **Midnight Pro** : Thème sombre professionnel (violet/cyan)
-- **Outils de conversion** HEX → HSL
-- **Code complet** avec HTML d'exemple
-
-**Aperçu rapide - Créer un thème personnalisé :**
-
+**Aperçu rapide** (DaisyUI v4 CDN):
 ```css
 [data-theme="mon-theme"] {
-  --p: 217 91% 60%;        /* primary (HSL) */
-  --pc: 0 0% 100%;         /* primary-content */
-  --s: 158 64% 52%;        /* secondary */
-  --sc: 0 0% 100%;         /* secondary-content */
-  --a: 38 92% 50%;         /* accent */
-  --ac: 0 0% 100%;         /* accent-content */
-  --n: 218 18% 17%;        /* neutral */
-  --nc: 0 0% 100%;         /* neutral-content */
-  --b1: 0 0% 100%;         /* base-100 */
-  --b2: 220 14% 96%;       /* base-200 */
-  --b3: 220 13% 91%;       /* base-300 */
-  --bc: 218 18% 17%;       /* base-content */
-  --rounded-box: 1rem;     /* bordures */
+  --p: 217 91% 60%;    /* primary (HSL) */
+  --s: 158 64% 52%;    /* secondary */
+  --a: 38 92% 50%;     /* accent */
+  --n: 218 18% 17%;    /* neutral */
+  --b1: 0 0% 100%;     /* base-100 */
+  --b2: 220 14% 96%;   /* base-200 */
+  --b3: 220 13% 91%;   /* base-300 */
 }
 ```
 
-```html
-<html data-theme="mon-theme">
-  <!-- Votre contenu utilise automatiquement votre thème -->
-</html>
+**Build DaisyUI v5** (OKLCH):
+```css
+@plugin "daisyui/theme" {
+  name: "mon-theme";
+  default: true;
+  --color-primary: oklch(60% 0.2 240);
+  --color-secondary: oklch(70% 0.15 180);
+  --color-accent: oklch(65% 0.25 50);
+}
 ```
 
-➡️ **Voir [THEMES.md](./THEMES.md) pour la documentation complète et les exemples détaillés**
+---
 
-## HeroIcons - Bibliothèque d'Icônes
+## 🎯 HeroIcons v2.1.5 (316 Icônes)
 
-HeroIcons est la bibliothèque d'icônes officielle de TailwindCSS, créée par les mêmes auteurs. Elle contient **292 icônes** disponibles en **3 styles** différents.
+Bibliothèque officielle TailwindCSS : **316 icônes**, **4 styles**, **MIT License**
 
-### 3 Styles d'Icônes
+### 4 Styles Disponibles
 
-**1. Outline (24x24)** : Style par défaut, trait fin
+| Style | Taille | Stroke | Usage |
+|-------|--------|--------|-------|
+| **Outline** | 24×24px | 1.5px | Interfaces aérées (défaut) |
+| **Solid** | 24×24px | - | CTA, éléments importants |
+| **Mini** | 20×20px | - | Petits espaces, badges |
+| **Micro** | 16×16px | - | Ultra compact, inline text |
+
+### Utilisation React
+
 ```jsx
+// Outline (24x24, stroke 1.5px)
 import { BeakerIcon } from '@heroicons/react/24/outline'
+<BeakerIcon className="w-6 h-6 text-blue-500" />
 
-function MyComponent() {
-  return <BeakerIcon className="w-6 h-6 text-blue-500" />
-}
-```
-
-**2. Solid (24x24)** : Version remplie, plus audacieuse
-```jsx
+// Solid (24x24, filled)
 import { BeakerIcon } from '@heroicons/react/24/solid'
+<BeakerIcon className="w-6 h-6 text-blue-500" />
 
-function MyComponent() {
-  return <BeakerIcon className="w-6 h-6 text-blue-500" />
-}
-```
-
-**3. Mini (20x20)** : Version compacte pour petits espaces
-```jsx
+// Mini (20x20, filled)
 import { BeakerIcon } from '@heroicons/react/20/solid'
+<BeakerIcon className="w-5 h-5 text-blue-500" />
 
-function MyComponent() {
-  return <BeakerIcon className="w-5 h-5 text-blue-500" />
-}
+// Micro (16x16, filled)
+import { BeakerIcon } from '@heroicons/react/16/solid'
+<BeakerIcon className="w-4 h-4 text-blue-500" />
 ```
 
-### Utilisation en HTML/SVG
-
-Pour les projets sans React, utilisez les SVG directement :
+### Utilisation HTML/SVG
 
 ```html
-<!-- Outline -->
+<!-- Outline (stroke) -->
 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
 </svg>
 
-<!-- Solid -->
+<!-- Solid (fill) -->
 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
 </svg>
 ```
 
-### Intégration avec DaisyUI
-
-Les icônes s'intègrent parfaitement avec les composants DaisyUI :
+### Intégration DaisyUI
 
 ```html
-<!-- Boutons avec icônes -->
+<!-- Bouton avec icône -->
 <button class="btn btn-primary gap-2">
   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
@@ -265,16 +260,12 @@ Les icônes s'intègrent parfaitement avec les composants DaisyUI :
 </button>
 
 <!-- Input avec icône -->
-<div class="form-control">
-  <div class="input-group">
-    <span>
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-      </svg>
-    </span>
-    <input type="text" placeholder="Rechercher..." class="input input-bordered" />
-  </div>
-</div>
+<label class="input input-bordered flex items-center gap-2">
+  <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+  </svg>
+  <input type="text" placeholder="Rechercher..." />
+</label>
 
 <!-- Alert avec icône -->
 <div class="alert alert-info">
@@ -284,324 +275,311 @@ Les icônes s'intègrent parfaitement avec les composants DaisyUI :
   <span>Nouvelle notification</span>
 </div>
 
-<!-- Menu avec icônes -->
-<ul class="menu bg-base-200 w-56 rounded-box">
-  <li>
-    <a>
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-      </svg>
-      Accueil
-    </a>
-  </li>
-  <li>
-    <a>
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-      </svg>
-      Profil
-    </a>
-  </li>
-  <li>
-    <a>
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-      </svg>
-      Paramètres
-    </a>
-  </li>
-</ul>
-
-<!-- Card avec icône -->
-<div class="card w-96 bg-base-100 shadow-xl">
-  <div class="card-body">
-    <div class="flex items-center gap-4">
-      <div class="avatar placeholder">
-        <div class="bg-primary text-primary-content rounded-full w-16">
-          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-          </svg>
-        </div>
-      </div>
-      <div>
-        <h2 class="card-title">Jean Dupont</h2>
-        <p>Développeur Full Stack</p>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Badge avec icône -->
-<div class="badge badge-primary gap-2">
-  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+<div class="badge badge-success gap-1">
+  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
   </svg>
   Vérifié
 </div>
 ```
 
-### Catégories d'Icônes Principales
-
-Voir le fichier [HEROICONS.md](HEROICONS.md) pour la liste complète des 292 icônes.
-
-**Catégories populaires :**
-- **Actions** : plus, minus, x-mark, check, arrow-*, chevron-*, etc.
-- **Navigation** : home, bars-3, magnifying-glass, cog-6-tooth, user, etc.
-- **Media** : play, pause, stop, forward, backward, volume, etc.
-- **Communication** : envelope, phone, chat-bubble, bell, at-symbol, etc.
-- **Commerce** : shopping-cart, credit-card, currency-dollar, gift, etc.
-- **Files** : document, folder, cloud, archive, arrow-down-tray, etc.
-- **Social** : heart, star, share, bookmark, flag, etc.
-- **Status** : check-circle, x-circle, exclamation-triangle, information-circle, etc.
-- **Weather** : sun, moon, cloud, bolt, etc.
-- **Devices** : computer-desktop, device-phone-mobile, printer, etc.
-
-### Sizing avec TailwindCSS
+### Tailles Recommandées
 
 ```html
-<!-- Tailles standards -->
-<svg class="w-3 h-3">...</svg>  <!-- 12px - Très petit -->
-<svg class="w-4 h-4">...</svg>  <!-- 16px - Petit -->
-<svg class="w-5 h-5">...</svg>  <!-- 20px - Normal -->
-<svg class="w-6 h-6">...</svg>  <!-- 24px - Défaut -->
-<svg class="w-8 h-8">...</svg>  <!-- 32px - Grand -->
-<svg class="w-10 h-10">...</svg> <!-- 40px - Très grand -->
-<svg class="w-12 h-12">...</svg> <!-- 48px - Extra grand -->
+<svg class="w-3 h-3">...</svg>  <!-- 12px - Micro inline -->
+<svg class="w-4 h-4">...</svg>  <!-- 16px - Mini badges -->
+<svg class="w-5 h-5">...</svg>  <!-- 20px - Boutons, inputs -->
+<svg class="w-6 h-6">...</svg>  <!-- 24px - Défaut standard -->
+<svg class="w-8 h-8">...</svg>  <!-- 32px - Headings, CTA -->
+<svg class="w-10 h-10">...</svg> <!-- 40px - Heroes, avatars -->
 ```
 
-### Coloration
-
-Les icônes utilisent `currentColor`, elles héritent donc automatiquement de la couleur du texte :
+### Coloration (currentColor)
 
 ```html
-<!-- Via classe text-* -->
-<svg class="w-6 h-6 text-primary">...</svg>
+<!-- Hérite de la couleur du texte -->
+<div class="text-primary">
+  <svg class="w-6 h-6" fill="currentColor">...</svg>
+</div>
+
+<!-- Classes DaisyUI -->
 <svg class="w-6 h-6 text-error">...</svg>
 <svg class="w-6 h-6 text-success">...</svg>
+<svg class="w-6 h-6 text-warning">...</svg>
 
-<!-- Via fill ou stroke -->
-<svg class="w-6 h-6" fill="currentColor">...</svg>
-<svg class="w-6 h-6" stroke="currentColor">...</svg>
-
-<!-- Avec hover -->
+<!-- Avec transitions -->
 <button class="text-base-content hover:text-primary transition-colors">
-  <svg class="w-6 h-6" fill="currentColor">...</svg>
+  <svg class="w-6 h-6">...</svg>
 </button>
 ```
 
-### Bonnes Pratiques HeroIcons
+### Catégories Principales
 
-1. **Utiliser le bon style** :
-   - Outline pour les interfaces aérées
-   - Solid pour les CTA et éléments importants
-   - Mini pour les petits espaces (badges, labels)
+➡️ **Voir [HEROICONS.md](./HEROICONS.md)** pour la liste complète des 316 icônes
 
-2. **Cohérence visuelle** :
-   - Utiliser un seul style par interface (ne pas mélanger outline et solid)
-   - Garder des tailles cohérentes pour les icônes similaires
+**Top catégories** : Actions (42), Navigation (38), Communication (28), Fichiers (32), Commerce (24), Status (26), Météo (12), Appareils (18), Social, Media, etc.
 
-3. **Accessibilité** :
-   - Ajouter `aria-label` ou `aria-hidden="true"` selon le contexte
-   - Utiliser `role="img"` pour les icônes décoratives importantes
+### Bonnes Pratiques
 
-4. **Performance** :
-   - Préférer le SVG inline pour les icônes fréquemment utilisées
-   - Utiliser des sprites SVG pour de nombreuses icônes
+✅ **Cohérence** : Un seul style par interface (outline OU solid)
+✅ **Accessibilité** : `aria-hidden="true"` pour décoratives, `aria-label` pour fonctionnelles
+✅ **Performance** : SVG inline pour icônes fréquentes, sprites pour volume
+✅ **Sizing** : Utiliser les classes Tailwind (w-4, w-5, w-6...)
+
+---
+
+## 🎨 Système de Couleurs Sémantiques
+
+### Palette Complète DaisyUI
+
+Utilisez **TOUJOURS** les couleurs sémantiques, jamais les couleurs Tailwind brutes :
 
 ```html
-<!-- Icône décorative -->
-<svg aria-hidden="true" class="w-5 h-5">...</svg>
-
-<!-- Icône avec signification -->
-<button aria-label="Fermer">
-  <svg class="w-5 h-5">...</svg>
-</button>
-
-<!-- Icône avec texte visible -->
-<button>
-  <svg class="w-5 h-5">...</svg>
-  <span>Fermer</span>
-</button>
-```
-
-### Ressources HeroIcons
-
-- **Site officiel** : https://heroicons.com
-- **GitHub** : https://github.com/tailwindlabs/heroicons
-- **Recherche d'icônes** : https://heroicons.com (avec aperçu et copie)
-- **Figma** : Plugin HeroIcons disponible
-
-## Bibliothèque des 63 Composants DaisyUI
-
-Voir le fichier [COMPONENTS.md](COMPONENTS.md) pour la liste complète des composants organisés par catégorie.
-
-### Catégories de Composants
-
-- **Actions (6)** : Button, Dropdown, Modal, Swap, Theme Controller, FAB
-- **Data Display (17)** : Accordion, Avatar, Badge, Card, Carousel, Chat Bubble, Collapse, Countdown, Diff, Kbd, Stat, Table, Timeline, etc.
-- **Navigation (8)** : Breadcrumbs, Bottom Navigation, Link, Menu, Navbar, Pagination, Steps, Tabs
-- **Layout (6)** : Artboard, Divider, Drawer, Footer, Hero, Join
-- **Feedback (6)** : Alert, Loading, Progress, Radial Progress, Skeleton, Toast
-- **Form Controls (14)** : Checkbox, File Input, Radio, Range, Rating, Select, Text Input, Textarea, Toggle, Label, etc.
-- **Mockup (4)** : Browser, Code, Phone, Window
-
-## Bonnes Pratiques
-
-### Système de Couleurs Sémantiques
-
-Utilisez toujours les couleurs sémantiques de DaisyUI plutôt que les couleurs Tailwind brutes :
-
-✅ **BON :**
-```html
+<!-- ✅ BON : Couleurs sémantiques -->
 <button class="btn btn-primary">Action</button>
-<div class="bg-base-100 text-base-content">...</div>
-```
+<div class="bg-base-100 text-base-content">Contenu</div>
+<div class="alert alert-success">Succès</div>
 
-❌ **MAUVAIS :**
-```html
+<!-- ❌ MAUVAIS : Couleurs Tailwind brutes -->
 <button class="bg-blue-500 text-white">Action</button>
-<div class="bg-white text-black dark:bg-gray-900 dark:text-white">...</div>
+<div class="bg-white text-black dark:bg-gray-900">Contenu</div>
 ```
 
-### Palette de Couleurs Complète
+### Couleurs Disponibles
 
-- **primary** : Couleur principale de la marque
-- **secondary** : Couleur secondaire
-- **accent** : Couleur d'accentuation
-- **neutral** : Couleur neutre pour texte/bordures
-- **base-100/200/300** : Couleurs de fond (100=principal, 300=le plus foncé)
-- **base-content** : Texte qui s'adapte au fond
-- **info** : Informations
-- **success** : Succès
-- **warning** : Avertissement
-- **error** : Erreur
+| Couleur | Usage | Variante Content |
+|---------|-------|------------------|
+| `primary` | Couleur principale marque | `primary-content` |
+| `secondary` | Couleur secondaire | `secondary-content` |
+| `accent` | Accentuation | `accent-content` |
+| `neutral` | Texte, bordures neutres | `neutral-content` |
+| `base-100` | Fond principal | `base-content` |
+| `base-200` | Fond secondaire | - |
+| `base-300` | Fond tertiaire | - |
+| `info` | Informations | `info-content` |
+| `success` | Succès | `success-content` |
+| `warning` | Avertissement | `warning-content` |
+| `error` | Erreur | `error-content` |
 
-Chaque couleur a une variante **-content** pour le texte (ex: `primary-content`, `success-content`)
-
-### Utiliser les 35 Thèmes Intégrés
-
-Ne créez pas de thème personnalisé sans avoir testé les 35 thèmes intégrés. DaisyUI offre :
-
-- **light**, **dark** : Classiques
-- **cupcake**, **bumblebee** : Pastels
-- **cyberpunk**, **synthwave** : Rétro-futuriste
-- **forest**, **aqua** : Nature
-- **luxury**, **business** : Corporate
-- **dracula**, **night** : Dark élégants
-- Et 20+ autres...
-
-### Responsive Design
-
-Combinez les utilitaires Tailwind avec DaisyUI :
+### Exemples
 
 ```html
-<!-- Menu responsive -->
+<!-- États de messages -->
+<div class="alert alert-info">
+  <span>Information importante</span>
+</div>
+<div class="alert alert-success">
+  <span>Opération réussie</span>
+</div>
+<div class="alert alert-warning">
+  <span>Attention requise</span>
+</div>
+<div class="alert alert-error">
+  <span>Erreur détectée</span>
+</div>
+
+<!-- Boutons colorés -->
+<button class="btn btn-primary">Primary</button>
+<button class="btn btn-secondary">Secondary</button>
+<button class="btn btn-accent">Accent</button>
+<button class="btn btn-error">Delete</button>
+
+<!-- Badges -->
+<span class="badge badge-primary">New</span>
+<span class="badge badge-success">Available</span>
+<span class="badge badge-warning">Low Stock</span>
+<span class="badge badge-error">Sold Out</span>
+```
+
+---
+
+## 📱 Responsive Design
+
+Combinez les breakpoints Tailwind avec DaisyUI :
+
+```html
+<!-- Navbar responsive -->
 <div class="navbar bg-base-100">
+  <!-- Mobile: Dropdown menu -->
   <div class="navbar-start">
     <div class="dropdown">
       <label tabindex="0" class="btn btn-ghost lg:hidden">
-        <svg>...</svg>
+        <svg class="w-5 h-5"><!-- Menu icon --></svg>
       </label>
-      <ul class="menu menu-compact dropdown-content">
+      <ul class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
         <li><a>Item 1</a></li>
+        <li><a>Item 2</a></li>
       </ul>
     </div>
   </div>
+
+  <!-- Desktop: Horizontal menu -->
   <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal">
+    <ul class="menu menu-horizontal px-1">
       <li><a>Item 1</a></li>
+      <li><a>Item 2</a></li>
     </ul>
   </div>
 </div>
+
+<!-- Grid responsive -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div class="card">...</div>
+</div>
+
+<!-- Sizes responsive -->
+<button class="btn btn-sm md:btn-md lg:btn-lg">Responsive Button</button>
 ```
 
-### Accessibilité
+**Breakpoints Tailwind** : `sm:640px` `md:768px` `lg:1024px` `xl:1280px` `2xl:1536px`
 
-DaisyUI est conçu pour l'accessibilité :
+---
+
+## ♿ Accessibilité
+
+DaisyUI intègre l'accessibilité par défaut. Bonnes pratiques :
 
 ```html
-<!-- Utilisez les attributs ARIA -->
+<!-- Labels explicites -->
+<label class="label" for="email">
+  <span class="label-text">Adresse email</span>
+</label>
+<input id="email" type="email" class="input input-bordered" required />
+
+<!-- Boutons avec aria-label -->
 <button aria-label="Fermer" class="btn btn-circle btn-sm">
-  <svg>...</svg>
+  <svg class="w-4 h-4">...</svg>
 </button>
 
-<!-- Labels pour les inputs -->
-<label class="label" for="email">
-  <span class="label-text">Email</span>
-</label>
-<input id="email" type="email" class="input input-bordered" />
+<!-- Icônes décoratives -->
+<svg aria-hidden="true" class="w-5 h-5">...</svg>
 
-<!-- Rôles appropriés -->
+<!-- Rôles ARIA -->
 <nav role="navigation" class="navbar">...</nav>
 <main role="main">...</main>
-```
+<aside role="complementary" class="drawer-side">...</aside>
 
-### Combiner avec Tailwind
-
-DaisyUI fonctionne avec toutes les classes Tailwind :
-
-```html
-<!-- Classes DaisyUI + Tailwind -->
-<button class="btn btn-primary shadow-lg hover:shadow-xl transition-all duration-300">
-  Bouton stylé
+<!-- Focus visible -->
+<button class="btn focus:outline-offset-2 focus:outline-primary">
+  Action
 </button>
-
-<div class="card bg-gradient-to-r from-purple-500 to-pink-500">
-  <div class="card-body text-white">
-    <h2 class="card-title text-3xl font-bold">Titre</h2>
-  </div>
-</div>
 ```
 
-### Anti-Patterns à Éviter
+---
 
-**1. Ne pas outrepasser le système de couleurs**
+## 🚀 Bonnes Pratiques
+
+### 1. Cohérence du Système
+
+✅ **Toujours utiliser les classes sémantiques** (btn-primary, bg-base-100)
+✅ **Tester les 35 thèmes intégrés** avant de créer un thème custom
+✅ **Un seul style d'icônes** par interface (outline OU solid)
+✅ **Responsive d'abord** : mobile-first avec breakpoints
+
+### 2. Performance
+
+✅ **CDN pour prototypage**, **Build pour production**
+✅ **Purge CSS** : TailwindCSS supprime automatiquement les classes inutilisées
+✅ **SVG inline** pour icônes fréquentes (< 10 icônes)
+✅ **Sprites SVG** pour nombreuses icônes (> 10)
+
+### 3. Maintenance
+
+✅ **Documentation** : Commenter les choix de thème
+✅ **Nomenclature** : Noms de thèmes descriptifs (light-corporate, dark-tech)
+✅ **Versioning** : Lock versions en production
+✅ **Testing** : Tester sur thèmes light ET dark
+
+### 4. Anti-Patterns à Éviter
+
+❌ **Ne pas mélanger couleurs Tailwind brutes et DaisyUI**
 ```html
-❌ <button class="btn bg-blue-600">Action</button>
-✅ <button class="btn btn-primary">Action</button>
+<!-- MAUVAIS -->
+<button class="bg-blue-600 hover:bg-blue-700">Button</button>
+<!-- BON -->
+<button class="btn btn-primary">Button</button>
 ```
 
-**2. Ne pas dupliquer les styles déjà fournis**
+❌ **Ne pas dupliquer les styles DaisyUI**
 ```html
-❌ <button class="px-4 py-2 rounded-lg bg-primary text-primary-content">
-✅ <button class="btn btn-primary">
+<!-- MAUVAIS -->
+<button class="px-4 py-2 rounded-lg bg-primary text-primary-content">
+<!-- BON -->
+<button class="btn btn-primary">
 ```
 
-**3. Ne pas mélanger les approches de theming**
+❌ **Ne pas ignorer le système de theming**
 ```html
-❌ <div class="bg-white dark:bg-gray-900" data-theme="light">
-✅ <div class="bg-base-100" data-theme="light">
+<!-- MAUVAIS -->
+<div class="bg-white dark:bg-gray-900 text-black dark:text-white">
+<!-- BON -->
+<div class="bg-base-100 text-base-content">
 ```
 
-## Exemples Complets
+---
 
-Voir le fichier [EXAMPLES.md](EXAMPLES.md) pour des exemples complets :
-- Formulaire de connexion avec dark mode
-- Dashboard responsive avec sidebar
-- Page de profil utilisateur
-- E-commerce product card
+## 📖 Exemples Complets
 
-## Instructions d'Utilisation du Skill
+➡️ **Voir [EXAMPLES.md](./EXAMPLES.md)** pour :
+- Formulaire de connexion responsive + dark mode
+- Dashboard avec sidebar et navigation
+- Page profil utilisateur avec avatar
+- E-commerce product cards et panier
+- Application dashboard complète avec statistiques
 
-Lorsque l'utilisateur demande :
-- **"Crée un formulaire"** → Utilise les composants form + labels + validation
-- **"Ajoute le dark mode"** → Implémente theme-controller avec light/dark
-- **"Dashboard responsive"** → Utilise drawer + navbar + stats + responsive classes
-- **"Changer les couleurs"** → Suggère des thèmes intégrés appropriés
-- **"Liste de produits"** → Cards + badges + rating + responsive grid
+---
 
-Toujours :
-1. Utiliser les classes sémantiques (btn-primary, bg-base-100)
-2. Proposer des thèmes intégrés avant de créer un custom
-3. Inclure les bonnes pratiques d'accessibilité (labels, aria)
-4. Rendre responsive avec les breakpoints Tailwind (sm:, md:, lg:)
-5. Implémenter le dark mode de manière cohérente
+## 🔍 Guide d'Utilisation Rapide
 
-## Références
+Quand l'utilisateur demande :
 
-- Documentation officielle : https://daisyui.com
-- Composants : https://daisyui.com/components/
-- Thèmes : https://daisyui.com/docs/themes/
-- GitHub : https://github.com/saadeghi/daisyui
-- TailwindCSS : https://tailwindcss.com
+| Demande | Action |
+|---------|--------|
+| "Crée un formulaire" | `input` + `label` + `btn` + validation |
+| "Ajoute le dark mode" | `theme-controller` avec localStorage |
+| "Dashboard responsive" | `drawer` + `navbar` + `stats` + grid responsive |
+| "Changer les couleurs" | Proposer thèmes intégrés appropriés |
+| "Carte de produit" | `card` + `badge` + `rating` + `btn` |
+| "Menu navigation" | `navbar` + `menu` + `dropdown` (responsive) |
+| "Formulaire avec validation" | `form-control` + `label` + états `input-error` |
+
+**Toujours** :
+1. Classes sémantiques (btn-primary, bg-base-100)
+2. Thèmes intégrés avant custom
+3. Accessibilité (labels, aria, roles)
+4. Responsive (sm:, md:, lg:, xl:)
+5. Dark mode cohérent (data-theme)
+
+---
+
+## 📚 Ressources
+
+### Documentation Officielle
+- **DaisyUI** : https://daisyui.com (v5.5.0)
+- **DaisyUI Components** : https://daisyui.com/components/
+- **DaisyUI Themes** : https://daisyui.com/docs/themes/
+- **TailwindCSS** : https://tailwindcss.com (v4)
+- **HeroIcons** : https://heroicons.com (v2.1.5)
+
+### GitHub
+- **DaisyUI** : https://github.com/saadeghi/daisyui
+- **HeroIcons** : https://github.com/tailwindlabs/heroicons
+- **TailwindCSS** : https://github.com/tailwindlabs/tailwindcss
+
+### Outils
+- **HeroIcons Search** : https://heroicons.com (copie code)
+- **DaisyUI Theme Generator** : https://daisyui.com/theme-generator/
+- **TailwindCSS Play** : https://play.tailwindcss.com
+
+### Fichiers Support
+- **[COMPONENTS.md](./COMPONENTS.md)** : 63 composants avec code
+- **[HEROICONS.md](./HEROICONS.md)** : 316 icônes cataloguées
+- **[THEMES.md](./THEMES.md)** : Guide thèmes + 2 exemples prêts
+- **[EXAMPLES.md](./EXAMPLES.md)** : Applications complètes
+
+---
+
+**Version** : TailwindCSS 4 + DaisyUI 5.5.0 + HeroIcons v2.1.5
+**Compatibilité** : CDN (DaisyUI 4.12.10) + Build (DaisyUI 5.5.0)
+**License** : MIT pour tous les composants
