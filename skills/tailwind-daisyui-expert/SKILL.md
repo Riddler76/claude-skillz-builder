@@ -90,9 +90,9 @@ npx tailwindcss -i ./app.css -o ./dist/output.css --watch
 
 ### Liste Complète
 
-**Clairs (20)**: light, cupcake, bumblebee, emerald, corporate, synthwave, retro, cyberpunk, valentine, garden, lofi, pastel, fantasy, wireframe, cmyk, autumn, acid, lemonade, winter, nord, caramellatte, silk
+**🌞 Thèmes Clairs (14)**: light, cupcake, bumblebee, emerald, corporate, retro, garden, fantasy, wireframe, lemonade, acid, pastel, caramellatte, silk
 
-**Sombres (15)**: dark, night, coffee, dim, sunset, dracula, business, forest, aqua, black, luxury, halloween, abyss
+**🌙 Thèmes Sombres (21)**: dark, synthwave, cyberpunk, valentine, halloween, forest, aqua, lofi, black, luxury, dracula, cmyk, autumn, business, night, coffee, winter, dim, nord, sunset, abyss
 
 ### Configuration
 
