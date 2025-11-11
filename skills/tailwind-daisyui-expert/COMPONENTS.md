@@ -1,20 +1,20 @@
-# DaisyUI v5 - 75+ Composants
+# DaisyUI v5 - 65 Composants
 
-**Reference rapide** des 75+ composants DaisyUI v5 organisés par catégorie. [Documentation officielle](https://daisyui.com/components)
+**Reference rapide** des 65 composants DaisyUI v5 organisés par catégorie. [Documentation officielle](https://daisyui.com/components)
 
 ## 📋 Liste Complète par Catégorie
 
 | Catégorie | Composants (Total) |
 |-----------|-------------------|
-| **Actions (7)** | Button, Dropdown, Modal, Swap, Theme Controller, FAB, Filter |
-| **Data Display (21)** | Accordion, Avatar, Badge, Card, Carousel, Chat Bubble, Collapse, Countdown, Diff, Divider, Indicator, Kbd, Mask, Progress, Radial Progress, Skeleton, Stat, Table, Timeline, Text Rotate, Status |
-| **Navigation (9)** | Breadcrumbs, Bottom Nav, Link, Menu, Navbar, Pagination, Steps, Tabs, Dock |
+| **Actions (6)** | Button, Dropdown, FAB, Modal, Swap, Theme Controller |
+| **Data Display (18)** | Accordion, Avatar, Badge, Card, Carousel, Chat Bubble, Collapse, Countdown, Diff, Hover 3D, Hover Gallery, Kbd, List, Stat, Status, Table, Text Rotate, Timeline |
+| **Navigation (8)** | Breadcrumbs, Dock, Link, Menu, Navbar, Pagination, Steps, Tabs |
 | **Feedback (7)** | Alert, Loading, Progress, Radial Progress, Skeleton, Toast, Tooltip |
-| **Data Input (15)** | Checkbox, File Input, Radio, Range, Rating, Select, Text Input, Textarea, Toggle, Label, Form Control, Fieldset, Validator, Join (forms) |
-| **Layout (9)** | Artboard, Divider, Drawer, Footer, Hero, Join, Stack, Indicator, List |
+| **Data Input (14)** | Calendar, Checkbox, Fieldset, File Input, Filter, Label, Radio, Range, Rating, Select, Text Input, Textarea, Toggle, Validator |
+| **Layout (8)** | Divider, Drawer, Footer, Hero, Indicator, Join, Mask, Stack |
 | **Mockup (4)** | Browser, Code, Phone, Window |
-| **Effects (2)** | Hover 3D, Hover Gallery |
-| **Utilities (1)** | Calendar |
+
+**Total : 65 composants** selon la documentation officielle DaisyUI v5.
 
 ## 🎨 Actions (6)
 
